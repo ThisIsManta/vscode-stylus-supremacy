@@ -1,0 +1,81 @@
+{
+    "name": "stylus-supremacy",
+    "displayName": "Manta's Stylus Supremacy",
+    "description": "Make your Stylus files look great again.",
+    "version": "0.0.1",
+    "publisher": "thisismanta",
+    "categories": [
+        "Formatters",
+        "Languages"
+    ],
+    "keywords": [
+        "stylus",
+        "format",
+        "beautify"
+    ],
+    "repository": {
+        "url": "https://github.com/ThisIsManta/vscode-stylus-supremacy"
+    },
+    "bugs": {
+        "url": "https://github.com/ThisIsManta/vscode-stylus-supremacy/issues"
+    },
+    "icon": "misc/icon.png",
+    "galleryBanner": {
+        "color": "#424242",
+        "theme": "dark"
+    },
+    "engines": {
+        "vscode": "^1.10.0"
+    },
+    "activationEvents": [
+        "onCommand:stylusSupremacy.format",
+        "onLanguage:stylus"
+    ],
+    "main": "./dist/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "stylusSupremacy.format",
+                "title": "Format the current viewing Stylus file"
+            }
+        ],
+        "configuration": {
+            "title": "Stylus Supremacy",
+            "properties": {
+                "stylusSupremacy.insertColons": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "stylusSupremacy.insertSemicolons": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "stylusSupremacy.insertBraces": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "stylusSupremacy.insertNewLineBetweenGroups": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 0
+                }
+            }
+        }
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "vscode:prepublish": "tsc --project ./",
+        "compile": "tsc --project ./"
+    },
+    "devDependencies": {
+        "@types/glob": "^5.0.30",
+        "@types/node": "^6.0.40",
+        "@types/lodash": "^4.14.58",
+        "@types/stylus": "^0.48.27",
+        "glob": "^7.1.1",
+        "lodash": "^4.17.4",
+        "stylus": "^0.54.5",
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0"
+    }
+}
