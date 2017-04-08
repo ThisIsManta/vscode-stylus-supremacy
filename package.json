@@ -65,7 +65,7 @@
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
         "vscode:prepublish": "tsc --project ./",
-        "compile": "tsc --project ./"
+        "compile": "tsc --watch --project ./"
     },
     "devDependencies": {
         "@types/glob": "^5.0.30",
@@ -75,6 +75,7 @@
         "glob": "^7.1.1",
         "lodash": "^4.17.4",
         "stylus": "^0.54.5",
+        "stylus-supremacy": "0.0.2",
         "typescript": "^2.0.3",
         "vscode": "^1.0.0"
     }
