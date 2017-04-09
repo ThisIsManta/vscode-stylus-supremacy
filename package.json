@@ -10,8 +10,11 @@
     ],
     "keywords": [
         "stylus",
+        "css",
         "format",
-        "beautify"
+        "pretty",
+        "beautify",
+        "beautifier"
     ],
     "repository": {
         "url": "https://github.com/ThisIsManta/vscode-stylus-supremacy"
@@ -25,7 +28,7 @@
         "theme": "dark"
     },
     "engines": {
-        "vscode": "^1.10.0"
+        "vscode": "^1.11.0"
     },
     "activationEvents": [
         "onCommand:stylusSupremacy.format",
@@ -57,7 +60,47 @@
                 "stylusSupremacy.insertNewLineBetweenGroups": {
                     "type": "integer",
                     "minimum": 0,
-                    "default": 0
+                    "default": 1
+                },
+                "stylusSupremacy.insertNewLineBetweenSelectors": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "stylusSupremacy.insertNewLineBeforeElse": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "stylusSupremacy.insertSpaceBeforeComment": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "stylusSupremacy.insertSpaceAfterComment": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "stylusSupremacy.insertParenthesisAroundIfCondition": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "stylusSupremacy.quoteChar": {
+                    "type": "string",
+                    "default": "'"
+                },
+                "stylusSupremacy.sortProperties": {
+                    "oneOf": [
+                        false,
+                        "alphabetical",
+                        "grouped"
+                    ],
+                    "default": false
+                },
+                "stylusSupremacy.alwaysUseImport": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "stylusSupremacy.alwaysUseNot": {
+                    "type": "boolean",
+                    "default": false
                 }
             }
         }
@@ -76,7 +119,7 @@
         "lodash": "^4.17.4",
         "stylus": "^0.54.5",
         "stylus-supremacy": "0.0.2",
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0"
+        "typescript": "^2.2.2",
+        "vscode": "^1.1.0"
     }
 }
