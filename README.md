@@ -1,65 +1,17 @@
-# stylus-supremacy README
+# Stylus Supremacy
 
-This is the README for your extension "stylus-supremacy". After writing up a brief description, we recommend including the following sections.
+**Stylus Supremacy** extension helps formatting *[Stylus](http://stylus-lang.com)* files. It is powered by the [*NPM* package](https://www.npmjs.com/package/stylus-supremacy) with the same name and developed by the same developer.
 
-## Features
+!GIF!
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Once you have this extension installed on your *Visual Studio Code*, you can simply open a *Stylus* file, right click to open the document context menu, then choose **Format Document** or press **Shift+Alt+F** on your keyboard. The shortcut key is exactly the same as formatting a *JavaScript* file.
 
-For example if there is an image subfolder under your extension project workspace:
+## Formatting options in VS Code settings
 
-\!\[feature X\]\(images/feature-x.png\)
+You can find **Stylus Supremacy** section in the default *Visual Studio Code* settings. There are pretty similar to the [formatting options in the original *NPM* package](https://github.com/ThisIsManta/stylus-supremacy#formatting-options), except that `tabStopChar` and `newLineChar` will be determined automatically based on the current active *Stylus* file.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Formatting options from Stylint
 
-## Requirements
+If you are using *[Stylint](https://www.npmjs.com/package/stylint)* as a *Stylus* linter, simply put *.stylintrc* file in the current viewing file directory up to your root directory.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+For more information, please see [*Stylint* compatibility section in the original *NPM* package](https://github.com/ThisIsManta/stylus-supremacy#stylint-compatibility).
