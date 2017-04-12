@@ -17,35 +17,47 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
         }
     }
 
-    provideDocumentFormattingEdits(document: vscode.TextDocument, options: vscode.FormattingOptions, token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
+    format(document: vscode.TextDocument, documentOptions: vscode.FormattingOptions, cancellationToken: vscode.CancellationToken, range?: vscode.Range, resumeOnError: boolean = false): vscode.ProviderResult<vscode.TextEdit[]> {
         const formattingOptions = {
             ...this.workspaceFormattingOptions,
-            tabStopChar: options.insertSpaces ? ' '.repeat(options.tabSize) : '\t',
+            tabStopChar: documentOptions.insertSpaces ? ' '.repeat(documentOptions.tabSize) : '\t',
             newLineChar: document.eol === vscode.EndOfLine.CRLF ? '\r\n' : '\n',
         }
 
         try {
-            const result = format(document.getText(), formattingOptions)
+            const result = format(document.getText(range), formattingOptions)
 
-            if (result.warnings.length > 0) {
+            if (result.warnings.length > 0 && resumeOnError === false) {
                 vscode.window.showWarningMessage(result.warnings[0].message)
                 result.warnings.forEach(warn => {
-                    console.log(warn.message)
+                    console.warn(warn.message)
                 })
             }
 
-            return [vscode.TextEdit.replace(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE), result.text)]
+            if (cancellationToken.isCancellationRequested) {
+                return null
+            } else if (range) {
+                return [vscode.TextEdit.replace(range, result.text)]
+            } else {
+                return [vscode.TextEdit.replace(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE), result.text)]
+            }
 
         } catch (ex) {
-            vscode.window.showWarningMessage(ex.message)
-            console.log(ex);
+            if (resumeOnError === false) {
+                vscode.window.showWarningMessage(ex.message)
+                console.error(ex)
+            }
 
             return null
         }
     }
 
+    provideDocumentFormattingEdits(document: vscode.TextDocument, options: vscode.FormattingOptions, token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
+        return this.format(document, options, token)
+    }
+
     provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, options: vscode.FormattingOptions, token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
-        return null
+        return this.format(document, options, token, range, true)
     }
 }
 
@@ -58,11 +70,9 @@ export function activate(context: vscode.ExtensionContext) {
         formatter.configure()
     }))
 
-    context.subscriptions.push(vscode.commands.registerCommand('stylusSupremacy.format', () => {
-        vscode.window.showInformationMessage('Hello World!')
-    }))
-
     context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('stylus', formatter))
+
+    context.subscriptions.push(vscode.languages.registerDocumentRangeFormattingEditProvider('stylus', formatter))
 }
 
 export function deactivate() { }
