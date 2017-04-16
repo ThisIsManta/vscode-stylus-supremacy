@@ -2,7 +2,7 @@
     "name": "stylus-supremacy",
     "displayName": "Manta's Stylus Supremacy",
     "description": "Make your Stylus files look great again.",
-    "version": "0.0.1",
+    "version": "0.2.0",
     "publisher": "thisismanta",
     "categories": [
         "Formatters",
@@ -39,68 +39,68 @@
             "title": "Stylus Supremacy",
             "properties": {
                 "stylusSupremacy.insertColons": {
-                    "title": "Insert a colon after a property name.",
+                    "description": "Insert a colon after a property name.",
                     "type": "boolean",
                     "default": true
                 },
                 "stylusSupremacy.insertSemicolons": {
-                    "title": "Insert a semi-colon after a property value, a variable declaration, a variable assignment and a function call.",
+                    "description": "Insert a semi-colon after a property value, a variable declaration, a variable assignment and a function call.",
                     "type": "boolean",
                     "default": true
                 },
                 "stylusSupremacy.insertBraces": {
-                    "title": "Insert a pair of curly braces between a selector body, a mixin body, a function body and any @block bodies.",
+                    "description": "Insert a pair of curly braces between a selector body, a mixin body, a function body and any @block bodies.",
                     "type": "boolean",
                     "default": true
                 },
                 "stylusSupremacy.insertNewLineBetweenGroups": {
-                    "title": "Represent a number of new-line between different type of groups.",
+                    "description": "Represent a number of new-line between different type of groups.",
                     "type": "integer",
                     "minimum": 0,
                     "default": 1
                 },
                 "stylusSupremacy.insertNewLineBetweenSelectors": {
-                    "title": "Insert a new-line between selectors.",
+                    "description": "Insert a new-line between selectors.",
                     "type": "boolean",
                     "default": false
                 },
                 "stylusSupremacy.insertNewLineBeforeElse": {
-                    "title": "Insert a new-line before *else* keyword.",
+                    "description": "Insert a new-line before *else* keyword.",
                     "type": "boolean",
                     "default": false
                 },
                 "stylusSupremacy.insertSpaceBeforeComment": {
-                    "title": "Insert a white-space before a comment.",
+                    "description": "Insert a white-space before a comment.",
                     "type": "boolean",
                     "default": true
                 },
                 "stylusSupremacy.insertSpaceAfterComment": {
-                    "title": "Insert a white-space after a comment.",
+                    "description": "Insert a white-space after a comment.",
                     "type": "boolean",
                     "default": true
                 },
                 "stylusSupremacy.insertSpaceAfterComma": {
-                    "title": "Insert a white-space after a comma. Commas appear in serveral places, for example, a function parameter list, a function call, object properties and so on.",
+                    "description": "Insert a white-space after a comma. Commas appear in serveral places, for example, a function parameter list, a function call, object properties and so on.",
                     "type": "boolean",
                     "default": true
                 },
                 "stylusSupremacy.insertSpaceInsideParenthesis": {
-                    "title": "Insert a white-space after an open parenthesis and before a close parenthesis.",
+                    "description": "Insert a white-space after an open parenthesis and before a close parenthesis.",
                     "type": "boolean",
                     "default": false
                 },
                 "stylusSupremacy.insertParenthesisAroundIfCondition": {
-                    "title": "Insert a pair of parentheses between *if*-condition.",
+                    "description": "Insert a pair of parentheses between *if*-condition.",
                     "type": "boolean",
                     "default": true
                 },
                 "stylusSupremacy.insertLeadingZeroBeforeFraction": {
-                    "title": "Insert a zero before a number that between 1 and 0.",
+                    "description": "Insert a zero before a number that between 1 and 0.",
                     "type": "boolean",
                     "default": true
                 },
                 "stylusSupremacy.quoteChar": {
-                    "title": "Represent a quote character that is used to begin and terminate a string. You must choose either single-quote or double-quote.",
+                    "description": "Represent a quote character that is used to begin and terminate a string. You must choose either single-quote or double-quote.",
                     "oneOf": [
                         "'",
                         "\""
@@ -108,7 +108,7 @@
                     "default": "'"
                 },
                 "stylusSupremacy.sortProperties": {
-                    "title": "Can be either `false` for doing nothing about the CSS property order, `\"alphabetical\"` for sorting CSS properties from A to Z, `\"grouped\"` for sorting CSS properties according to *[Stylint predefined order](https://github.com/SimenB/stylint/blob/master/src/data/ordering.json)*, or an array of property names will sort the properties accordingly (for example, `[\"display\", \"margin\", \"padding\"]`).",
+                    "description": "Can be either \n`false` for doing nothing about the CSS property order, \n\"alphabetical\" for sorting CSS properties from A to Z, \n\"grouped\" for sorting CSS properties according to *[Stylint predefined order](https://github.com/SimenB/stylint/blob/master/src/data/ordering.json)*, \nor an array of property names will sort the properties accordingly (for example, [\"display\", \"margin\", \"padding\"]).",
                     "oneOf": [
                         false,
                         "alphabetical",
@@ -124,32 +124,32 @@
                     "default": false
                 },
                 "stylusSupremacy.alwaysUseImport": {
-                    "title": "Always use *@import* over *@require*.",
+                    "description": "Always use *@import* over *@require*.",
                     "type": "boolean",
                     "default": false
                 },
                 "stylusSupremacy.alwaysUseNot": {
-                    "title": "Always use *not* keyword over *!* operator.",
+                    "description": "Always use *not* keyword over *!* operator.",
                     "type": "boolean",
                     "default": false
                 },
                 "stylusSupremacy.alwaysUseAtBlock": {
-                    "title": "Always use *@block*.",
+                    "description": "Always use *@block*.",
                     "type": "boolean",
                     "default": false
                 },
                 "stylusSupremacy.alwaysUseExtends": {
-                    "title": "Always use *@extends* over *@extend*.",
+                    "description": "Always use *@extends* over *@extend*.",
                     "type": "boolean",
                     "default": false
                 },
                 "stylusSupremacy.alwaysUseZeroWithoutUnit": {
-                    "title": "Always use *0* without unit in property values.",
+                    "description": "Always use *0* without unit in property values.",
                     "type": "boolean",
                     "default": false
                 },
                 "stylusSupremacy.reduceMarginAndPaddingValues": {
-                    "title": "Always use `margin x` over `margin x x x x`, `margin x y` over `margin x y x y` where `x`, `y` is a property value.",
+                    "description": "Always use `margin x` over `margin x x x x`, `margin x y` over `margin x y x y` where `x`, `y` is a property value.",
                     "type": "boolean",
                     "default": false
                 }
