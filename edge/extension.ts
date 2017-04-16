@@ -29,7 +29,7 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
 
     private findStylintOptions(document: vscode.TextDocument): object {
         let stylintPath = null
-        if (!document.isUntitled && document.fileName.startsWith(vscode.workspace.rootPath)) {
+        if (document.isUntitled === false && document.fileName.startsWith(vscode.workspace.rootPath)) {
             // Find `.stylintrc` starting from the current viewing document up to the working directory
             const pathList = document.fileName.substring(vscode.workspace.rootPath.length).split(/(\\|\/)/).filter(path => path.length > 0)
             pathList.pop() // Remove the file name
@@ -62,25 +62,57 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
         return {}
     }
 
-    private format(document: vscode.TextDocument, documentOptions: vscode.FormattingOptions, cancellationToken: vscode.CancellationToken, range?: vscode.Range, ignoreErrors: boolean = false): vscode.ProviderResult<vscode.TextEdit[]> {
+    private format(document: vscode.TextDocument, documentOptions: vscode.FormattingOptions, cancellationToken: vscode.CancellationToken, originalRange?: vscode.Range, ignoreErrors: boolean = false): vscode.ProviderResult<vscode.TextEdit[]> {
         const formattingOptions = {
             ...this.workspaceFormattingOptions,
             ...this.findStylintOptions(document),
             tabStopChar: documentOptions.insertSpaces ? ' '.repeat(documentOptions.tabSize) : '\t',
             newLineChar: document.eol === vscode.EndOfLine.CRLF ? '\r\n' : '\n',
-            wrapMode: !!range // true for partial formatting, otherwise false
+            wrapMode: !!originalRange // true for partial formatting, otherwise false
         }
-        console.log(formattingOptions);
 
         try {
             // Extend the selection range
-            if (range && range.start.line !== range.end.line) {
-                range = new vscode.Range(range.start.line, 0, range.end.line, Number.MAX_VALUE)
+            let extendedRange: vscode.Range = originalRange
+            if (originalRange && originalRange.start.line !== originalRange.end.line) {
+                let start: vscode.Position
+                if (document.getText(new vscode.Range(originalRange.start.line, originalRange.start.character, originalRange.start.line + 1, 0)).trim().length === 0) {
+                    start = new vscode.Position(originalRange.start.line + 1, 0)
+                } else {
+                    start = new vscode.Position(originalRange.start.line, 0)
+                }
+
+                let end: vscode.Position
+                if (originalRange.end.character === 0) {
+                    end = new vscode.Position(originalRange.end.line - 1, Number.MAX_VALUE)
+                } else {
+                    end = new vscode.Position(originalRange.end.line, Number.MAX_VALUE)
+                }
+
+                extendedRange = document.validateRange(new vscode.Range(start, end))
+                if (extendedRange.isEmpty) {
+                    return null
+                }
+
+                /*if (extendedRange.isEqual(originalRange) === false) {
+                    const oldSelection = vscode.window.activeTextEditor.selection
+                    let newSelection: vscode.Selection
+                    if (oldSelection.anchor.isBefore(oldSelection.active)) {
+                        newSelection = new vscode.Selection(extendedRange.start, extendedRange.end)
+                    } else {
+                        newSelection = new vscode.Selection(extendedRange.end, extendedRange.start)
+                    }
+                    vscode.window.activeTextEditor.selection = newSelection
+                }*/
             }
 
-            const content = document.getText(range)
+            const content = document.getText(extendedRange)
+            if (content.trim().length === 0) {
+                return null
+            }
+
             const result = format(content, formattingOptions)
-            
+
             // Show a warning dialog
             if (result.warnings.length > 0 && ignoreErrors === false) {
                 vscode.window.showWarningMessage(result.warnings[0].message)
@@ -91,8 +123,8 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
 
             if (cancellationToken.isCancellationRequested || result.text.length === 0) {
                 return null
-            } else if (range) {
-                return [vscode.TextEdit.replace(range, result.text)]
+            } else if (extendedRange) {
+                return [vscode.TextEdit.replace(extendedRange, result.text)]
             } else {
                 return [vscode.TextEdit.replace(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE), result.text)]
             }
