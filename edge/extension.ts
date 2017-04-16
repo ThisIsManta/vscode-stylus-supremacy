@@ -38,6 +38,8 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
                 if (fs.existsSync(workPath)) {
                     stylintPath = workPath
                     break
+                } else if (pathList.length === 0) {
+                    break
                 }
                 pathList.pop()
             }
