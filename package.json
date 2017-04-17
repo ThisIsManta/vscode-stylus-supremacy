@@ -13,8 +13,7 @@
         "css",
         "format",
         "pretty",
-        "beautify",
-        "beautifier"
+        "beautify"
     ],
     "repository": {
         "url": "https://github.com/ThisIsManta/vscode-stylus-supremacy"
@@ -159,18 +158,19 @@
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
         "vscode:prepublish": "tsc --skipLibCheck --project ./",
+        "postversion": "git push --tags --quiet origin master:master && vsce publish",
         "compile": "tsc --watch --project ./"
     },
     "devDependencies": {
-        "@types/glob": "^5.0.30",
         "@types/node": "^6.0.40",
         "@types/lodash": "^4.14.58",
         "@types/stylus": "^0.48.27",
-        "glob": "^7.1.1",
-        "lodash": "^4.17.4",
-        "stylus": "^0.54.5",
-        "stylus-supremacy": "0.2.0",
         "typescript": "^2.2.2",
         "vscode": "^1.1.0"
+    },
+    "dependencies": {
+        "lodash": "^4.17.4",
+        "stylus": "^0.54.5",
+        "stylus-supremacy": "0.2.0"
     }
 }
