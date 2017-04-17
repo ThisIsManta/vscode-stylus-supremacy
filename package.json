@@ -158,7 +158,7 @@
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
-        "vscode:prepublish": "tsc --project ./",
+        "vscode:prepublish": "tsc --skipLibCheck --project ./",
         "compile": "tsc --watch --project ./"
     },
     "devDependencies": {
