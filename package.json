@@ -1,176 +1,176 @@
 {
-    "name": "stylus-supremacy",
-    "displayName": "Manta's Stylus Supremacy",
-    "description": "Make your Stylus files look great again.",
-    "version": "0.2.0",
-    "publisher": "thisismanta",
-    "categories": [
-        "Formatters",
-        "Languages"
-    ],
-    "keywords": [
-        "stylus",
-        "css",
-        "format",
-        "pretty",
-        "beautify"
-    ],
-    "repository": {
-        "url": "https://github.com/ThisIsManta/vscode-stylus-supremacy"
-    },
-    "bugs": {
-        "url": "https://github.com/ThisIsManta/vscode-stylus-supremacy/issues"
-    },
-    "icon": "misc/icon.png",
-    "galleryBanner": {
-        "color": "#D50000",
-        "theme": "dark"
-    },
-    "engines": {
-        "vscode": "^1.11.0"
-    },
-    "activationEvents": [
-        "onLanguage:stylus"
-    ],
-    "main": "./dist/extension",
-    "contributes": {
-        "configuration": {
-            "title": "Stylus Supremacy",
-            "properties": {
-                "stylusSupremacy.insertColons": {
-                    "description": "Insert a colon after a property name.",
-                    "type": "boolean",
-                    "default": true
-                },
-                "stylusSupremacy.insertSemicolons": {
-                    "description": "Insert a semi-colon after a property value, a variable declaration, a variable assignment and a function call.",
-                    "type": "boolean",
-                    "default": true
-                },
-                "stylusSupremacy.insertBraces": {
-                    "description": "Insert a pair of curly braces between a selector body, a mixin body, a function body and any @block bodies.",
-                    "type": "boolean",
-                    "default": true
-                },
-                "stylusSupremacy.insertNewLineBetweenGroups": {
-                    "description": "Represent a number of new-line between different type of groups.",
-                    "type": "integer",
-                    "minimum": 0,
-                    "default": 1
-                },
-                "stylusSupremacy.insertNewLineBetweenSelectors": {
-                    "description": "Insert a new-line between selectors.",
-                    "type": "boolean",
-                    "default": false
-                },
-                "stylusSupremacy.insertNewLineBeforeElse": {
-                    "description": "Insert a new-line before *else* keyword.",
-                    "type": "boolean",
-                    "default": false
-                },
-                "stylusSupremacy.insertSpaceBeforeComment": {
-                    "description": "Insert a white-space before a comment.",
-                    "type": "boolean",
-                    "default": true
-                },
-                "stylusSupremacy.insertSpaceAfterComment": {
-                    "description": "Insert a white-space after a comment.",
-                    "type": "boolean",
-                    "default": true
-                },
-                "stylusSupremacy.insertSpaceAfterComma": {
-                    "description": "Insert a white-space after a comma. Commas appear in serveral places, for example, a function parameter list, a function call, object properties and so on.",
-                    "type": "boolean",
-                    "default": true
-                },
-                "stylusSupremacy.insertSpaceInsideParenthesis": {
-                    "description": "Insert a white-space after an open parenthesis and before a close parenthesis.",
-                    "type": "boolean",
-                    "default": false
-                },
-                "stylusSupremacy.insertParenthesisAroundIfCondition": {
-                    "description": "Insert a pair of parentheses between *if*-condition.",
-                    "type": "boolean",
-                    "default": true
-                },
-                "stylusSupremacy.insertLeadingZeroBeforeFraction": {
-                    "description": "Insert a zero before a number that between 1 and 0.",
-                    "type": "boolean",
-                    "default": true
-                },
-                "stylusSupremacy.quoteChar": {
-                    "description": "Represent a quote character that is used to begin and terminate a string. You must choose either single-quote or double-quote.",
-                    "oneOf": [
-                        "'",
-                        "\""
-                    ],
-                    "default": "'"
-                },
-                "stylusSupremacy.sortProperties": {
-                    "description": "Can be either \n`false` for doing nothing about the CSS property order, \n\"alphabetical\" for sorting CSS properties from A to Z, \n\"grouped\" for sorting CSS properties according to *[Stylint predefined order](https://github.com/SimenB/stylint/blob/master/src/data/ordering.json)*, \nor an array of property names will sort the properties accordingly (for example, [\"display\", \"margin\", \"padding\"]).",
-                    "oneOf": [
-                        false,
-                        "alphabetical",
-                        "grouped",
-                        {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            },
-                            "uniqueItems": true
-                        }
-                    ],
-                    "default": false
-                },
-                "stylusSupremacy.alwaysUseImport": {
-                    "description": "Always use *@import* over *@require*.",
-                    "type": "boolean",
-                    "default": false
-                },
-                "stylusSupremacy.alwaysUseNot": {
-                    "description": "Always use *not* keyword over *!* operator.",
-                    "type": "boolean",
-                    "default": false
-                },
-                "stylusSupremacy.alwaysUseAtBlock": {
-                    "description": "Always use *@block*.",
-                    "type": "boolean",
-                    "default": false
-                },
-                "stylusSupremacy.alwaysUseExtends": {
-                    "description": "Always use *@extends* over *@extend*.",
-                    "type": "boolean",
-                    "default": false
-                },
-                "stylusSupremacy.alwaysUseZeroWithoutUnit": {
-                    "description": "Always use *0* without unit in property values.",
-                    "type": "boolean",
-                    "default": false
-                },
-                "stylusSupremacy.reduceMarginAndPaddingValues": {
-                    "description": "Always use `margin x` over `margin x x x x`, `margin x y` over `margin x y x y` where `x`, `y` is a property value.",
-                    "type": "boolean",
-                    "default": false
-                }
+  "name": "stylus-supremacy",
+  "displayName": "Manta's Stylus Supremacy",
+  "description": "Make your Stylus files look great again.",
+  "version": "0.2.1",
+  "publisher": "thisismanta",
+  "categories": [
+    "Formatters",
+    "Languages"
+  ],
+  "keywords": [
+    "stylus",
+    "css",
+    "format",
+    "pretty",
+    "beautify"
+  ],
+  "repository": {
+    "url": "https://github.com/ThisIsManta/vscode-stylus-supremacy"
+  },
+  "bugs": {
+    "url": "https://github.com/ThisIsManta/vscode-stylus-supremacy/issues"
+  },
+  "icon": "misc/icon.png",
+  "galleryBanner": {
+    "color": "#D50000",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "activationEvents": [
+    "onLanguage:stylus"
+  ],
+  "main": "./dist/extension",
+  "contributes": {
+    "configuration": {
+      "title": "Stylus Supremacy",
+      "properties": {
+        "stylusSupremacy.insertColons": {
+          "description": "Insert a colon after a property name.",
+          "type": "boolean",
+          "default": true
+        },
+        "stylusSupremacy.insertSemicolons": {
+          "description": "Insert a semi-colon after a property value, a variable declaration, a variable assignment and a function call.",
+          "type": "boolean",
+          "default": true
+        },
+        "stylusSupremacy.insertBraces": {
+          "description": "Insert a pair of curly braces between a selector body, a mixin body, a function body and any @block bodies.",
+          "type": "boolean",
+          "default": true
+        },
+        "stylusSupremacy.insertNewLineBetweenGroups": {
+          "description": "Represent a number of new-line between different type of groups.",
+          "type": "integer",
+          "minimum": 0,
+          "default": 1
+        },
+        "stylusSupremacy.insertNewLineBetweenSelectors": {
+          "description": "Insert a new-line between selectors.",
+          "type": "boolean",
+          "default": false
+        },
+        "stylusSupremacy.insertNewLineBeforeElse": {
+          "description": "Insert a new-line before *else* keyword.",
+          "type": "boolean",
+          "default": false
+        },
+        "stylusSupremacy.insertSpaceBeforeComment": {
+          "description": "Insert a white-space before a comment.",
+          "type": "boolean",
+          "default": true
+        },
+        "stylusSupremacy.insertSpaceAfterComment": {
+          "description": "Insert a white-space after a comment.",
+          "type": "boolean",
+          "default": true
+        },
+        "stylusSupremacy.insertSpaceAfterComma": {
+          "description": "Insert a white-space after a comma. Commas appear in serveral places, for example, a function parameter list, a function call, object properties and so on.",
+          "type": "boolean",
+          "default": true
+        },
+        "stylusSupremacy.insertSpaceInsideParenthesis": {
+          "description": "Insert a white-space after an open parenthesis and before a close parenthesis.",
+          "type": "boolean",
+          "default": false
+        },
+        "stylusSupremacy.insertParenthesisAroundIfCondition": {
+          "description": "Insert a pair of parentheses between *if*-condition.",
+          "type": "boolean",
+          "default": true
+        },
+        "stylusSupremacy.insertLeadingZeroBeforeFraction": {
+          "description": "Insert a zero before a number that between 1 and 0.",
+          "type": "boolean",
+          "default": true
+        },
+        "stylusSupremacy.quoteChar": {
+          "description": "Represent a quote character that is used to begin and terminate a string. You must choose either single-quote or double-quote.",
+          "oneOf": [
+            "'",
+            "\""
+          ],
+          "default": "'"
+        },
+        "stylusSupremacy.sortProperties": {
+          "description": "Can be either \n`false` for doing nothing about the CSS property order, \n\"alphabetical\" for sorting CSS properties from A to Z, \n\"grouped\" for sorting CSS properties according to *[Stylint predefined order](https://github.com/SimenB/stylint/blob/master/src/data/ordering.json)*, \nor an array of property names will sort the properties accordingly (for example, [\"display\", \"margin\", \"padding\"]).",
+          "oneOf": [
+            false,
+            "alphabetical",
+            "grouped",
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
             }
+          ],
+          "default": false
+        },
+        "stylusSupremacy.alwaysUseImport": {
+          "description": "Always use *@import* over *@require*.",
+          "type": "boolean",
+          "default": false
+        },
+        "stylusSupremacy.alwaysUseNot": {
+          "description": "Always use *not* keyword over *!* operator.",
+          "type": "boolean",
+          "default": false
+        },
+        "stylusSupremacy.alwaysUseAtBlock": {
+          "description": "Always use *@block*.",
+          "type": "boolean",
+          "default": false
+        },
+        "stylusSupremacy.alwaysUseExtends": {
+          "description": "Always use *@extends* over *@extend*.",
+          "type": "boolean",
+          "default": false
+        },
+        "stylusSupremacy.alwaysUseZeroWithoutUnit": {
+          "description": "Always use *0* without unit in property values.",
+          "type": "boolean",
+          "default": false
+        },
+        "stylusSupremacy.reduceMarginAndPaddingValues": {
+          "description": "Always use `margin x` over `margin x x x x`, `margin x y` over `margin x y x y` where `x`, `y` is a property value.",
+          "type": "boolean",
+          "default": false
         }
-    },
-    "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "vscode:prepublish": "tsc --skipLibCheck --project ./",
-        "postversion": "git push --tags --quiet origin master:master && vsce publish",
-        "compile": "tsc --watch --project ./"
-    },
-    "devDependencies": {
-        "@types/node": "^6.0.40",
-        "@types/lodash": "^4.14.58",
-        "@types/stylus": "^0.48.27",
-        "typescript": "^2.2.2",
-        "vscode": "^1.1.0"
-    },
-    "dependencies": {
-        "lodash": "^4.17.4",
-        "stylus": "^0.54.5",
-        "stylus-supremacy": "0.2.0"
+      }
     }
+  },
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "vscode:prepublish": "tsc --skipLibCheck --project ./",
+    "postversion": "git push --tags --quiet origin master:master && vsce publish",
+    "compile": "tsc --watch --project ./"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.40",
+    "@types/lodash": "^4.14.58",
+    "@types/stylus": "^0.48.27",
+    "typescript": "^2.2.2",
+    "vscode": "^1.1.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "stylus": "^0.54.5",
+    "stylus-supremacy": "0.2.0"
+  }
 }
