@@ -158,7 +158,8 @@
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
     "vscode:prepublish": "tsc --skipLibCheck --project ./",
-    "postversion": "git push --tags --quiet origin master:master && vsce publish",
+    "version": "vsce publish",
+    "postversion": "git push --tags --quiet origin master:master",
     "compile": "tsc --watch --project ./"
   },
   "devDependencies": {
