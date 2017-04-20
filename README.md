@@ -8,7 +8,9 @@ Once you have this extension installed on your *Visual Studio Code*, you can sim
 
 ## Settings
 
-You can find **Stylus Supremacy** section in the default *Visual Studio Code* settings. There are pretty similar to the [formatting options in the original *NPM* package](https://github.com/ThisIsManta/stylus-supremacy#formatting-options), except that `tabStopChar` and `newLineChar` will be determined automatically based on the current active *Stylus* file.
+You can find **Stylus Supremacy** section in the default *Visual Studio Code* settings. They are pretty similar to [the formatting options](https://github.com/ThisIsManta/stylus-supremacy#formatting-options) in the original *NPM* package, except that `tabStopChar` and `newLineChar` will be determined automatically based on the current active *Stylus* file.
+
+This also supports `editor.formatOnType` and `editor.formatOnSave` settings as long as `files.autoSave` is `"off"`.
 
 If you are using *[Stylint](https://marketplace.visualstudio.com/items?itemName=vtfn.stylint)* as a *Stylus* linter, the extension will find *.stylintrc* file starting from the current viewing file directory up to your root working directory. However, if both *.stylintrc* file and *Visual Studio Code* settings are found, the *.stylintrc* file will override and merge with *Visual Studio Code* settings.
 

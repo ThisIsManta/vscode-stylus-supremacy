@@ -5,8 +5,9 @@ import { format, createFormattingOptionsFromStylintOptions } from 'stylus-suprem
 
 const defaultFormattingOptions = require('stylus-supremacy/edge/defaultFormattingOptions.json')
 
-class Formatter implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
+class Formatter implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider, vscode.OnTypeFormattingEditProvider {
     private workspaceFormattingOptions: object
+    private formatOnSaveEnabled: boolean
 
     configure() {
         this.workspaceFormattingOptions = {}
@@ -17,6 +18,8 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
                 this.workspaceFormattingOptions[name] = config.get(name)
             }
         }
+
+        this.formatOnSaveEnabled = vscode.workspace.getConfiguration('editor').get('formatOnSave', false)
     }
 
     provideDocumentFormattingEdits(document: vscode.TextDocument, options: vscode.FormattingOptions, token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
@@ -25,6 +28,22 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
 
     provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, options: vscode.FormattingOptions, token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
         return this.format(document, options, token, range, true)
+    }
+
+    provideOnTypeFormattingEdits(document: vscode.TextDocument, position: vscode.Position, ch: string, options: vscode.FormattingOptions, token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
+        return this.format(document, options, token, null, true)
+    }
+
+    provideOnSaveFormattingEdits(event: vscode.TextDocumentWillSaveEvent) {
+        if (this.formatOnSaveEnabled && event.reason === vscode.TextDocumentSaveReason.Manual) {
+            const documentOptions = {
+                insertSpaces: vscode.window.activeTextEditor.options.insertSpaces as boolean,
+                tabSize: vscode.window.activeTextEditor.options.tabSize as number,
+            }
+            event.waitUntil((async () => {
+                return this.format(event.document, documentOptions)
+            })())
+        }
     }
 
     private findStylintOptions(document: vscode.TextDocument): object {
@@ -64,7 +83,7 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
         return {}
     }
 
-    private format(document: vscode.TextDocument, documentOptions: vscode.FormattingOptions, cancellationToken: vscode.CancellationToken, originalRange?: vscode.Range, ignoreErrors: boolean = false): vscode.ProviderResult<vscode.TextEdit[]> {
+    private format(document: vscode.TextDocument, documentOptions: vscode.FormattingOptions, cancellationToken?: vscode.CancellationToken, originalRange?: vscode.Range, ignoreErrors: boolean = false): vscode.TextEdit[] | null {
         const formattingOptions = {
             ...this.workspaceFormattingOptions,
             ...this.findStylintOptions(document),
@@ -123,7 +142,7 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
                 })
             }
 
-            if (cancellationToken.isCancellationRequested || result.text.length === 0) {
+            if (cancellationToken && cancellationToken.isCancellationRequested || result.text.length === 0) {
                 return null
             } else if (extendedRange) {
                 return [vscode.TextEdit.replace(extendedRange, result.text)]
@@ -158,6 +177,12 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Subscribe "format selection" event
     context.subscriptions.push(vscode.languages.registerDocumentRangeFormattingEditProvider('stylus', formatter))
+
+    // Subscribe "format document on type" event
+    context.subscriptions.push(vscode.languages.registerOnTypeFormattingEditProvider('stylus', formatter, '}', ';', '\n'))
+
+    // Subscribe "format document on save" event
+    context.subscriptions.push(vscode.workspace.onWillSaveTextDocument(event => formatter.provideOnSaveFormattingEdits(event)))
 }
 
 export function deactivate() { }
