@@ -173,6 +173,6 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "stylus": "^0.54.5",
-    "stylus-supremacy": "0.2.4"
+    "stylus-supremacy": "0.2.5"
   }
 }
