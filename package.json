@@ -107,7 +107,7 @@
           "default": "'"
         },
         "stylusSupremacy.sortProperties": {
-          "description": "Can be either \n`false` for doing nothing about the CSS property order, \n\"alphabetical\" for sorting CSS properties from A to Z, \n\"grouped\" for sorting CSS properties according to *[Stylint predefined order](https://github.com/SimenB/stylint/blob/master/src/data/ordering.json)*, \nor an array of property names will sort the properties accordingly (for example, [\"display\", \"margin\", \"padding\"]).",
+          "description": "Can be either \n`false` for doing nothing about the CSS property order, \n\"alphabetical\" for sorting CSS properties from A to Z, \n\"grouped\" for sorting CSS properties according to *[Stylint predefined order](https://github.com/SimenB/stylint/blob/master/src/data/ordering.json)*, \nor an array of property names (for example, [\"display\", \"margin\", \"padding\"]).",
           "oneOf": [
             false,
             "alphabetical",
@@ -158,6 +158,7 @@
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
     "vscode:prepublish": "tsc --skipLibCheck --project ./",
+    "preversion": "rm -rf node_modules && npm install",
     "version": "vsce publish",
     "postversion": "git push --tags --quiet origin master:master",
     "compile": "tsc --watch --project ./"
@@ -172,6 +173,6 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "stylus": "^0.54.5",
-    "stylus-supremacy": "0.2.3"
+    "stylus-supremacy": "0.2.4"
   }
 }
