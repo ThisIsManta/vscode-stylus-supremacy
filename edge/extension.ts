@@ -35,7 +35,7 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
     }
 
     provideOnSaveFormattingEdits(event: vscode.TextDocumentWillSaveEvent) {
-        if (this.formatOnSaveEnabled && event.reason === vscode.TextDocumentSaveReason.Manual) {
+        if (this.formatOnSaveEnabled && event.document.languageId === 'stylus' && event.reason === vscode.TextDocumentSaveReason.Manual) {
             const documentOptions = {
                 insertSpaces: vscode.window.activeTextEditor.options.insertSpaces as boolean,
                 tabSize: vscode.window.activeTextEditor.options.tabSize as number,
