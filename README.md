@@ -4,7 +4,7 @@
 
 ![Demo](misc/demo.gif)
 
-Once you have this extension installed on your *Visual Studio Code*, you can simply open a *Stylus* file, right click on the editing space, then choose **Format Document** or press **Shift+Alt+F** on your keyboard (see `"editor.action.formatDocument"` command in keyboard shortcuts). This also supports **Format Section** command.
+Once you have this extension installed on your *Visual Studio Code*, you can simply open a *Stylus* file, right click on the editing space, then choose **Format Document** or press **Shift+Alt+F** on your keyboard (see `editor.action.formatDocument` command in keyboard shortcuts). This also supports **Format Section** command.
 
 ## Settings
 

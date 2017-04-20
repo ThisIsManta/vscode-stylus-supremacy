@@ -38,17 +38,17 @@
       "title": "Stylus Supremacy",
       "properties": {
         "stylusSupremacy.insertColons": {
-          "description": "Insert a colon after a property name.",
+          "description": "Insert or remove a colon after a property name.",
           "type": "boolean",
           "default": true
         },
         "stylusSupremacy.insertSemicolons": {
-          "description": "Insert a semi-colon after a property value, a variable declaration, a variable assignment and a function call.",
+          "description": "Insert or remove a semi-colon after a property value, a variable declaration, a variable assignment and a function call.",
           "type": "boolean",
           "default": true
         },
         "stylusSupremacy.insertBraces": {
-          "description": "Insert a pair of curly braces between a selector body, a mixin body, a function body and any @block bodies.",
+          "description": "Insert or remove a pair of curly braces between a selector body, a mixin body and a function body. Note that this option does not affect *@block* construction, see alwaysUseAtBlock.",
           "type": "boolean",
           "default": true
         },
@@ -59,42 +59,42 @@
           "default": 1
         },
         "stylusSupremacy.insertNewLineBetweenSelectors": {
-          "description": "Insert a new-line between selectors.",
-          "type": "boolean",
-          "default": false
-        },
-        "stylusSupremacy.insertNewLineBeforeElse": {
-          "description": "Insert a new-line before *else* keyword.",
+          "description": "Insert or remove a new-line between selectors.",
           "type": "boolean",
           "default": false
         },
         "stylusSupremacy.insertSpaceBeforeComment": {
-          "description": "Insert a white-space before a comment.",
+          "description": "Insert or remove a white-space before a comment.",
           "type": "boolean",
           "default": true
         },
         "stylusSupremacy.insertSpaceAfterComment": {
-          "description": "Insert a white-space after a comment.",
+          "description": "Insert or remove a white-space after a comment.",
           "type": "boolean",
           "default": true
         },
         "stylusSupremacy.insertSpaceAfterComma": {
-          "description": "Insert a white-space after a comma. Commas appear in serveral places, for example, a function parameter list, a function call, object properties and so on.",
+          "description": "Insert or remove a white-space after a comma.",
           "type": "boolean",
           "default": true
         },
         "stylusSupremacy.insertSpaceInsideParenthesis": {
-          "description": "Insert a white-space after an open parenthesis and before a close parenthesis.",
+          "description": "Insert or remove a white-space after an open parenthesis and before a close parenthesis.",
           "type": "boolean",
           "default": false
         },
         "stylusSupremacy.insertParenthesisAroundIfCondition": {
-          "description": "Insert a pair of parentheses between *if*-condition.",
+          "description": "Insert or remove a pair of parentheses between *if*-condition.",
           "type": "boolean",
           "default": true
         },
+        "stylusSupremacy.insertNewLineBeforeElse": {
+          "description": "Insert or remove a new-line before *else* keyword.",
+          "type": "boolean",
+          "default": false
+        },
         "stylusSupremacy.insertLeadingZeroBeforeFraction": {
-          "description": "Insert a zero before a number that between 1 and 0.",
+          "description": "Insert or remove a zero before a number that between 1 and 0.",
           "type": "boolean",
           "default": true
         },
@@ -107,7 +107,7 @@
           "default": "'"
         },
         "stylusSupremacy.sortProperties": {
-          "description": "Can be either \n`false` for doing nothing about the CSS property order, \n\"alphabetical\" for sorting CSS properties from A to Z, \n\"grouped\" for sorting CSS properties according to *[Stylint predefined order](https://github.com/SimenB/stylint/blob/master/src/data/ordering.json)*, \nor an array of property names (for example, [\"display\", \"margin\", \"padding\"]).",
+          "description": "Can be either \n`false` for doing nothing about the CSS property order, \n\"alphabetical\" for sorting CSS properties from A to Z, \n\"grouped\" for sorting CSS properties according to https://github.com/SimenB/stylint/blob/master/src/data/ordering.json, \nor an array of property names that defines the property order (for example, [\"display\", \"margin\", \"padding\"]).",
           "oneOf": [
             false,
             "alphabetical",
@@ -123,32 +123,32 @@
           "default": false
         },
         "stylusSupremacy.alwaysUseImport": {
-          "description": "Always use *@import* over *@require*.",
+          "description": "Convert *@require* to *@import*.",
           "type": "boolean",
           "default": false
         },
         "stylusSupremacy.alwaysUseNot": {
-          "description": "Always use *not* keyword over *!* operator.",
+          "description": "Convert *!* operator to *not* keyword or vice versa.",
           "type": "boolean",
           "default": false
         },
         "stylusSupremacy.alwaysUseAtBlock": {
-          "description": "Always use *@block*.",
+          "description": "Convert an increased-indent at-block construction to an explicit one with *@block* keyword or vice versa. Note that this option ignores **`insertBraces`** option.",
           "type": "boolean",
           "default": false
         },
         "stylusSupremacy.alwaysUseExtends": {
-          "description": "Always use *@extends* over *@extend*.",
+          "description": "Convert *@extend* keyword to *@extends* keyword or vice versa.",
           "type": "boolean",
           "default": false
         },
         "stylusSupremacy.alwaysUseZeroWithoutUnit": {
-          "description": "Always use *0* without unit in property values.",
+          "description": "Convert `0px`, `0%`, `0em` and so on to `0` without units or vice versa.",
           "type": "boolean",
           "default": false
         },
         "stylusSupremacy.reduceMarginAndPaddingValues": {
-          "description": "Always use `margin x` over `margin x x x x`, `margin x y` over `margin x y x y` where `x`, `y` is a property value.",
+          "description": "Reduce `margin` and `padding` duplicate values by converting `margin x` to `margin x x x x`, `margin x y` to `margin x y x y` where `x`, `y` is a property value.",
           "type": "boolean",
           "default": false
         }
@@ -157,11 +157,11 @@
   },
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
+    "compile": "tsc --watch --project ./",
     "vscode:prepublish": "tsc --skipLibCheck --project ./",
     "preversion": "rm -rf node_modules && npm install",
     "version": "vsce publish",
-    "postversion": "git push --tags --quiet origin master:master",
-    "compile": "tsc --watch --project ./"
+    "postversion": "git push --tags --quiet origin master:master"
   },
   "devDependencies": {
     "@types/node": "^6.0.40",
