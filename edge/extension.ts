@@ -125,27 +125,18 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
                 }*/
             }
 
-            const content = document.getText(extendedRange)
-            if (content.trim().length === 0) {
+            const inputContent = document.getText(extendedRange)
+            if (inputContent.trim().length === 0) {
                 return null
             }
 
-            const result = format(content, formattingOptions)
-
-            // Show a warning dialog
-            if (result.warnings.length > 0 && ignoreErrors === false) {
-                vscode.window.showWarningMessage(result.warnings[0].message)
-                result.warnings.forEach(warn => {
-                    console.warn(warn.message)
-                })
-            }
-
-            if (cancellationToken && cancellationToken.isCancellationRequested || result.text.length === 0) {
+            const outputContent = format(inputContent, formattingOptions)
+            if (cancellationToken && cancellationToken.isCancellationRequested || outputContent.length === 0) {
                 return null
             } else if (extendedRange) {
-                return [vscode.TextEdit.replace(extendedRange, result.text)]
+                return [vscode.TextEdit.replace(extendedRange, outputContent)]
             } else {
-                return [vscode.TextEdit.replace(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE), result.text)]
+                return [vscode.TextEdit.replace(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE), outputContent)]
             }
 
         } catch (ex) {

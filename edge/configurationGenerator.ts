@@ -9,9 +9,14 @@ packageJson.contributes.configuration.properties = Object.keys(schema)
 	.filter(name => schema[name].hideInVSCE !== true)
 	.map(name => {
 		const item = { ...schema[name] }
-		item.description = Cheerio.load('<p>' + item.description + '</p>').root().text()
+
+		const $description = Cheerio.load('<p>' + item.description + '</p>').root()
+		$description.find('.no-vsce').remove()
+		item.description = $description.text().trim()
+
 		delete item.example
 		delete item.hideInDemo
+
 		return [name, item]
 	})
 	.reduce((hash, pair) => {
@@ -19,5 +24,4 @@ packageJson.contributes.configuration.properties = Object.keys(schema)
 		return hash
 	}, {})
 
-console.log(JSON.stringify(packageJson.contributes, null, '  '))
-// fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, '  '))
+fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, '  '))
