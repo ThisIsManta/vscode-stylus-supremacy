@@ -159,20 +159,20 @@
     "postinstall": "node ./node_modules/vscode/bin/install",
     "compile": "tsc --watch --project ./",
     "vscode:prepublish": "tsc --skipLibCheck --project ./",
-    "preversion": "rm -rf node_modules && npm install",
+    "preversion": "rm -rf node_modules && npm install && node dist/configurationGenerator.js",
     "version": "vsce publish",
     "postversion": "git push --tags --quiet origin master:master"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.1",
     "@types/node": "^6.0.40",
-    "@types/lodash": "^4.14.58",
     "@types/stylus": "^0.48.27",
+    "cheerio": "^0.22.0",
     "typescript": "^2.2.2",
     "vscode": "^1.1.0"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
     "stylus": "^0.54.5",
-    "stylus-supremacy": "0.2.9"
+    "stylus-supremacy": "1.0.1"
   }
 }

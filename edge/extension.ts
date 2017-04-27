@@ -1,9 +1,7 @@
 import * as fs from 'fs'
 import * as fp from 'path'
 import * as vscode from 'vscode'
-import { format, createFormattingOptionsFromStylintOptions } from 'stylus-supremacy'
-
-const defaultFormattingOptions = require('stylus-supremacy/edge/defaultFormattingOptions.json')
+import { format, createFormattingOptions, createFormattingOptionsFromStylint } from 'stylus-supremacy'
 
 class Formatter implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider, vscode.OnTypeFormattingEditProvider {
     private workspaceFormattingOptions: object
@@ -13,7 +11,7 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
         this.workspaceFormattingOptions = {}
 
         const config = vscode.workspace.getConfiguration('stylusSupremacy')
-        for (let name in defaultFormattingOptions) {
+        for (let name in createFormattingOptions.schema) {
             if (config.has(name)) {
                 this.workspaceFormattingOptions[name] = config.get(name)
             }
@@ -74,7 +72,7 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
         if (stylintPath) {
             try {
                 const stylintOptions = JSON.parse(fs.readFileSync(stylintPath, 'utf-8'))
-                return createFormattingOptionsFromStylintOptions(stylintOptions)
+                return createFormattingOptionsFromStylint(stylintOptions)
             } catch (ex) {
                 console.error(ex)
             }
