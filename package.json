@@ -2,7 +2,7 @@
   "name": "stylus-supremacy",
   "displayName": "Manta's Stylus Supremacy",
   "description": "Make your Stylus files look great again.",
-  "version": "0.3.6",
+  "version": "1.1.0",
   "publisher": "thisismanta",
   "categories": [
     "Formatters",
@@ -52,8 +52,18 @@
           "type": "boolean",
           "default": true
         },
+        "stylusSupremacy.insertNewLineAroundImports": {
+          "description": "Insert a new-line around a group of @import/@require(s).\nOnly apply to imports outside a block when set to \"root\", or only apply to imports inside a block when set to \"nested\".",
+          "oneOf": [
+            true,
+            false,
+            "root",
+            "nested"
+          ],
+          "default": true
+        },
         "stylusSupremacy.insertNewLineAroundBlocks": {
-          "description": "Insert a new-line around blocks.\nOnly apply to top-level blocks when set to \"root\", or only apply to nested blocks when set to \"nested\".\nCheck the detailed examples below.",
+          "description": "Insert a new-line around blocks.\nOnly apply to top-level blocks when set to \"root\", or only apply to nested blocks when set to \"nested\".",
           "oneOf": [
             true,
             false,
@@ -63,7 +73,7 @@
           "default": true
         },
         "stylusSupremacy.insertNewLineAroundProperties": {
-          "description": "Insert a new-line around a group of CSS properties.\nUnlike insertNewLineAroundBlocks and insertNewLineAroundOthers, this option cannot be set to \"root\" nor \"nested\" because CSS properties cannot be placed at the top level.\nCheck the detailed examples below.",
+          "description": "Insert a new-line around a group of CSS properties.\nUnlike insertNewLineAroundBlocks and insertNewLineAroundOthers, this option cannot be set to \"root\" nor \"nested\" because CSS properties cannot be placed at the top level.",
           "oneOf": [
             true,
             false
@@ -71,14 +81,14 @@
           "default": true
         },
         "stylusSupremacy.insertNewLineAroundOthers": {
-          "description": "Insert a new-line around a group of non-properties and non-blocks.\nOnly apply to others outside a block when set to \"root\", or only apply to others inside a block when set to \"nested\".\nCheck the detailed examples below.",
+          "description": "Insert a new-line around a group of non-properties, non-imports and non-blocks.\nOnly apply to others outside a block when set to \"root\", or only apply to others inside a block when set to \"nested\".",
           "oneOf": [
             true,
             false,
             "root",
             "nested"
           ],
-          "default": true
+          "default": false
         },
         "stylusSupremacy.insertNewLineBetweenSelectors": {
           "description": "Insert or remove a new-line between selectors.",
