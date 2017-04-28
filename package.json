@@ -78,7 +78,7 @@
             true,
             false
           ],
-          "default": true
+          "default": false
         },
         "stylusSupremacy.insertNewLineAroundOthers": {
           "description": "Insert a new-line around a group of non-properties, non-imports and non-blocks.\nOnly apply to others outside a block when set to \"root\", or only apply to others inside a block when set to \"nested\".",
@@ -205,6 +205,6 @@
   },
   "dependencies": {
     "stylus": "^0.54.5",
-    "stylus-supremacy": "1.1.0"
+    "stylus-supremacy": "1.2.0"
   }
 }
