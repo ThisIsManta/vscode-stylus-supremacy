@@ -181,7 +181,7 @@
     "postinstall": "node ./node_modules/vscode/bin/install",
     "compile": "tsc --watch --project ./",
     "vscode:prepublish": "tsc --skipLibCheck --project ./",
-    "preversion": "rm -rf node_modules && npm install && node dist/configurationGenerator.js",
+    "preversion": "rm -rf node_modules && npm install && tsc --project ./ && node dist/configurationGenerator.js",
     "version": "vsce publish",
     "postversion": "git push --tags --quiet origin master:master"
   },
