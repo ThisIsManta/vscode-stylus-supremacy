@@ -205,6 +205,6 @@
   },
   "dependencies": {
     "stylus": "^0.54.5",
-    "stylus-supremacy": "1.2.0"
+    "stylus-supremacy": "1.4.0"
   }
 }
