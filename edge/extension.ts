@@ -46,26 +46,28 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
 
     private findStylintOptions(document: vscode.TextDocument): object {
         let stylintPath = null
-        if (document.isUntitled === false && document.fileName.startsWith(vscode.workspace.rootPath)) {
-            // Find `.stylintrc` starting from the current viewing document up to the working directory
-            const pathList = document.fileName.substring(vscode.workspace.rootPath.length).split(/(\\|\/)/).filter(path => path.length > 0)
-            pathList.pop() // Remove the file name
-            while (pathList.length >= 0) {
-                const workPath = fp.join(vscode.workspace.rootPath, ...pathList, '.stylintrc')
-                if (fs.existsSync(workPath)) {
-                    stylintPath = workPath
-                    break
-                } else if (pathList.length === 0) {
-                    break
+        if (vscode.workspace.rootPath !== undefined) {
+            if (document.isUntitled === false && document.fileName.startsWith(vscode.workspace.rootPath)) {
+                // Find `.stylintrc` starting from the current viewing document up to the working directory
+                const pathList = document.fileName.substring(vscode.workspace.rootPath.length).split(/(\\|\/)/).filter(path => path.length > 0)
+                pathList.pop() // Remove the file name
+                while (pathList.length >= 0) {
+                    const workPath = fp.join(vscode.workspace.rootPath, ...pathList, '.stylintrc')
+                    if (fs.existsSync(workPath)) {
+                        stylintPath = workPath
+                        break
+                    } else if (pathList.length === 0) {
+                        break
+                    }
+                    pathList.pop()
                 }
-                pathList.pop()
-            }
 
-        } else {
-            // Find `.stylintrc` in the working directory
-            const workPath = fp.join(vscode.workspace.rootPath, '.stylintrc')
-            if (fs.existsSync(workPath) === false) {
-                stylintPath = workPath
+            } else {
+                // Find `.stylintrc` in the working directory
+                const workPath = fp.join(vscode.workspace.rootPath, '.stylintrc')
+                if (fs.existsSync(workPath) === false) {
+                    stylintPath = workPath
+                }
             }
         }
 
@@ -93,7 +95,10 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
         try {
             // Extend the selection range
             let extendedRange: vscode.Range = originalRange
-            if (originalRange && originalRange.start.line !== originalRange.end.line) {
+            if (!originalRange) {
+                extendedRange = document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
+
+            } else if (originalRange.start.line !== originalRange.end.line) {
                 let start: vscode.Position
                 if (document.getText(new vscode.Range(originalRange.start.line, originalRange.start.character, originalRange.start.line + 1, 0)).trim().length === 0) {
                     start = new vscode.Position(originalRange.start.line + 1, 0)
@@ -124,7 +129,7 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
                     vscode.window.activeTextEditor.selection = newSelection
                 }*/
             }
-
+            
             const inputContent = document.getText(extendedRange)
             if (inputContent.trim().length === 0) {
                 return null
@@ -133,10 +138,8 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
             const outputContent = format(inputContent, formattingOptions)
             if (cancellationToken && cancellationToken.isCancellationRequested || outputContent.length === 0) {
                 return null
-            } else if (extendedRange) {
-                return [vscode.TextEdit.replace(extendedRange, outputContent)]
             } else {
-                return [vscode.TextEdit.replace(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE), outputContent)]
+                return [vscode.TextEdit.replace(extendedRange, outputContent)]
             }
 
         } catch (ex) {
