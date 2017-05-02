@@ -2,7 +2,7 @@
   "name": "stylus-supremacy",
   "displayName": "Manta's Stylus Supremacy",
   "description": "Make your Stylus files look great again.",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "publisher": "thisismanta",
   "categories": [
     "Formatters",
@@ -174,13 +174,18 @@
           "type": "boolean",
           "default": false
         },
+        "stylusSupremacy.alwaysUseNoneOverZero": {
+          "description": "Replace 0 (regardless of its unit) with none for border and outline properties, or do nothing.",
+          "type": "boolean",
+          "default": false
+        },
         "stylusSupremacy.alwaysUseZeroWithoutUnit": {
-          "description": "Replace 0px, 0%, 0em and so on with 0 without units, or do nothing.",
+          "description": "Replace 0 (regardless of its unit) with 0 (without units), or do nothing.",
           "type": "boolean",
           "default": false
         },
         "stylusSupremacy.reduceMarginAndPaddingValues": {
-          "description": "Reduce margin and padding duplicate values by converting margin x x x x to margin x, margin x y x y to margin x y where x, y is a property value.",
+          "description": "Reduce margin and padding duplicate values by converting margin x x x x to margin x, margin x y x y to margin x y, and margin x y y y to margin x y y where x, y is a unique property value.",
           "type": "boolean",
           "default": false
         }
