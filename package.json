@@ -2,7 +2,7 @@
   "name": "stylus-supremacy",
   "displayName": "Manta's Stylus Supremacy",
   "description": "Make your Stylus files look great again.",
-  "version": "1.4.4",
+  "version": "1.4.6",
   "publisher": "thisismanta",
   "categories": [
     "Formatters",
@@ -205,7 +205,7 @@
     "@types/node": "^6.0.40",
     "@types/stylus": "^0.48.27",
     "cheerio": "^0.22.0",
-    "typescript": "^2.2.2",
+    "typescript": "^2.4.0",
     "vscode": "^1.1.0"
   },
   "dependencies": {
