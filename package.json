@@ -195,8 +195,9 @@
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
     "compile": "tsc --watch --project ./",
+    "upgrade": "rm -rf ./node_modules/stylus-supremacy && rm package-lock.json && npm install && git commit --all --message=\"Updated stylus-supremacy engine\"",
     "vscode:prepublish": "tsc --skipLibCheck --project ./",
-    "preversion": "npm update && npm run vscode:prepublish && node dist/configurationGenerator.js",
+    "preversion": "npm run vscode:prepublish && node dist/configurationGenerator.js",
     "version": "vsce publish",
     "postversion": "git push --tags --quiet origin master:master"
   },
@@ -210,6 +211,6 @@
   },
   "dependencies": {
     "stylus": "^0.54.5",
-    "stylus-supremacy": "1.4.6"
+    "stylus-supremacy": "latest"
   }
 }
