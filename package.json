@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/ThisIsManta/vscode-stylus-supremacy/issues"
   },
-  "icon": "docs/logo.svg",
+  "icon": "docs/logo.png",
   "galleryBanner": {
     "color": "#D50000",
     "theme": "dark"
