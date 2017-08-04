@@ -2,7 +2,7 @@
   "name": "stylus-supremacy",
   "displayName": "Manta's Stylus Supremacy",
   "description": "Make your Stylus files look great again.",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "publisher": "thisismanta",
   "categories": [
     "Formatters",
@@ -128,7 +128,7 @@
         "stylusSupremacy.insertParenthesisAroundNegatedVariable": {
           "description": "Insert a pair of parentheses or a white-space around negated variables.",
           "type": "boolean",
-          "default": true
+          "default": false
         },
         "stylusSupremacy.insertLeadingZeroBeforeFraction": {
           "description": "Insert or remove a zero before a number that between 1 and 0.",
