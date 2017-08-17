@@ -207,14 +207,14 @@
     "postversion": "git push --tags --quiet origin master:master"
   },
   "devDependencies": {
-    "@types/cheerio": "^0.22.1",
-    "@types/node": "^6.0.40",
-    "@types/stylus": "^0.48.27",
+    "@types/cheerio": "^0.22.2",
+    "@types/node": "^6.0.87",
     "cheerio": "^0.22.0",
-    "typescript": "^2.4.0",
-    "vscode": "^1.1.0"
+    "typescript": "^2.4.2",
+    "vscode": "^1.1.4"
   },
   "dependencies": {
+    "babylon": "^6.18.0",
     "stylus": "^0.54.5",
     "stylus-supremacy": "latest"
   }
