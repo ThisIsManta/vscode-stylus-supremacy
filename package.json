@@ -15,12 +15,12 @@
     "pretty",
     "beautify"
   ],
+  "homepage": "https://thisismanta.github.io/stylus-supremacy",
   "repository": {
-    "url": "https://github.com/ThisIsManta/vscode-stylus-supremacy"
+    "type": "git",
+    "url": "https://github.com/ThisIsManta/vscode-stylus-supremacy.git"
   },
-  "bugs": {
-    "url": "https://github.com/ThisIsManta/vscode-stylus-supremacy/issues"
-  },
+  "bugs": "https://github.com/ThisIsManta/vscode-stylus-supremacy/issues",
   "icon": "docs/logo.png",
   "galleryBanner": {
     "color": "#D50000",
