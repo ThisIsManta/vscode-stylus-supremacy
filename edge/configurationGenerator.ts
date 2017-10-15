@@ -1,8 +1,7 @@
 import * as fs from 'fs'
 import * as Cheerio from 'cheerio'
-import { createFormattingOptions } from 'stylus-supremacy'
+import { schema } from 'stylus-supremacy'
 
-const schema = createFormattingOptions.schema
 const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
 
 packageJson.contributes.configuration.properties = Object.keys(schema)

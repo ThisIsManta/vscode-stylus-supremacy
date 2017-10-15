@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as fp from 'path'
 import * as vscode from 'vscode'
-import { format, createFormattingOptions, createFormattingOptionsFromStylint } from 'stylus-supremacy'
+import { format, schema, createFormattingOptions, createFormattingOptionsFromStylint } from 'stylus-supremacy'
 import * as JSONWithComments from 'comment-json'
 
 class Formatter implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider, vscode.OnTypeFormattingEditProvider {
@@ -12,7 +12,7 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
         this.workspaceFormattingOptions = {}
 
         const config = vscode.workspace.getConfiguration('stylusSupremacy')
-        for (let name in createFormattingOptions.schema) {
+        for (let name in schema) {
             if (config.has(name)) {
                 this.workspaceFormattingOptions[name] = config.get(name)
             }
