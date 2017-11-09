@@ -48,14 +48,16 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
     private findStylintOptions(document: vscode.TextDocument): object {
         let stylintPath = null
 
+        const rootPath = vscode.workspace.getWorkspaceFolder(document.uri).uri.fsPath
+
         // Skip if there is no working directories (anonymous window)
-        if (vscode.workspace.rootPath !== undefined) {
-            if (document.isUntitled === false && document.fileName.startsWith(vscode.workspace.rootPath)) {
+        if (rootPath !== undefined) {
+            if (document.isUntitled === false && document.fileName.startsWith(rootPath)) {
                 // Find `.stylintrc` starting from the current active document up to the working directory
-                const pathList = document.fileName.substring(vscode.workspace.rootPath.length).split(/(\\|\/)/).filter(path => path.length > 0)
+                const pathList = document.fileName.substring(rootPath.length).split(/(\\|\/)/).filter(path => path.length > 0)
                 pathList.pop() // Remove the file name
                 while (pathList.length >= 0) {
-                    const workPath = fp.join(vscode.workspace.rootPath, ...pathList, '.stylintrc')
+                    const workPath = fp.join(rootPath, ...pathList, '.stylintrc')
                     if (fs.existsSync(workPath)) {
                         stylintPath = workPath
                         break
@@ -67,7 +69,7 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
 
             } else {
                 // Find `.stylintrc` in the working directory
-                const workPath = fp.join(vscode.workspace.rootPath, '.stylintrc')
+                const workPath = fp.join(rootPath, '.stylintrc')
                 if (fs.existsSync(workPath) === false) {
                     stylintPath = workPath
                 }
