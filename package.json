@@ -2,7 +2,7 @@
   "name": "stylus-supremacy",
   "displayName": "Manta's Stylus Supremacy",
   "description": "Make your Stylus files look great again.",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "publisher": "thisismanta",
   "categories": [
     "Formatters",
@@ -133,7 +133,7 @@
           "default": true
         },
         "stylusSupremacy.quoteChar": {
-          "description": "Represent a quote character that is used to begin and terminate a string. You must choose either a single-quote or a double-quote.",
+          "description": "Represent a quote character that is used to begin and terminate a string. You must choose either a single-quote or a double-quote.\nThis replaces the original quote characters with the given one, unless the string contains the given quote character (see font-family in .class2.) However, if the string starts with data:image/svg+xml;utf8,, the given quote character will be used, and the quote characters in the string will be escaped (see background-image in .class2.)",
           "enum": [
             "'",
             "\""
