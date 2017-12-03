@@ -1,5 +1,5 @@
-**Stylus Supremacy** extension helps formatting *[Stylus](http://stylus-lang.com)* files. It is powered by the [*Node.js* module](https://www.npmjs.com/package/stylus-supremacy) with the same name and developed by the same developer.
+**Stylus Supremacy** extension helps formatting **[Stylus](http://stylus-lang.com)** files. It is powered by the Node.js module with the same name and developed by the same developer.
 
-Please visit _https://thisismanta.github.io/stylus-supremacy#vscode_ for features and settings.
+# For features and settings, please visit https://thisismanta.github.io/stylus-supremacy#vscode
 
 [![Demo](docs/vscode.gif)](https://thisismanta.github.io/stylus-supremacy#vscode)
