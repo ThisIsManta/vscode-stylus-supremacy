@@ -6,7 +6,6 @@ import * as JSONWithComments from 'comment-json'
 
 class Formatter implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider, vscode.OnTypeFormattingEditProvider {
     private workspaceFormattingOptions: object
-    private formatOnSaveEnabled: boolean
 
     configure() {
         this.workspaceFormattingOptions = {}
@@ -17,8 +16,6 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
                 this.workspaceFormattingOptions[name] = config.get(name)
             }
         }
-
-        this.formatOnSaveEnabled = vscode.workspace.getConfiguration('editor').get('formatOnSave', false)
     }
 
     provideDocumentFormattingEdits(document: vscode.TextDocument, options: vscode.FormattingOptions, token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
@@ -31,18 +28,6 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
 
     provideOnTypeFormattingEdits(document: vscode.TextDocument, position: vscode.Position, ch: string, options: vscode.FormattingOptions, token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
         return this.format(document, options, token, null, true)
-    }
-
-    provideOnSaveFormattingEdits(event: vscode.TextDocumentWillSaveEvent) {
-        if (this.formatOnSaveEnabled && event.document.languageId === 'stylus' && event.reason === vscode.TextDocumentSaveReason.Manual) {
-            const documentOptions = {
-                insertSpaces: vscode.window.activeTextEditor.options.insertSpaces as boolean,
-                tabSize: vscode.window.activeTextEditor.options.tabSize as number,
-            }
-            event.waitUntil((async () => {
-                return this.format(event.document, documentOptions)
-            })())
-        }
     }
 
     private findStylintOptions(document: vscode.TextDocument): object {
@@ -210,9 +195,6 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Subscribe "format document on type" event
     context.subscriptions.push(vscode.languages.registerOnTypeFormattingEditProvider('stylus', formatter, '}', ';', '\n'))
-
-    // Subscribe "format document on save" event
-    context.subscriptions.push(vscode.workspace.onWillSaveTextDocument(event => formatter.provideOnSaveFormattingEdits(event)))
 }
 
 export function deactivate() { }
