@@ -2,7 +2,7 @@
   "name": "stylus-supremacy",
   "displayName": "Manta's Stylus Supremacy",
   "description": "Make your Stylus great again.",
-  "version": "2.7.3",
+  "version": "2.8.1",
   "publisher": "thisismanta",
   "categories": [
     "Formatters",
@@ -88,7 +88,8 @@
           "default": false
         },
         "stylusSupremacy.insertNewLineBetweenSelectors": {
-          "description": "Insert or remove a new-line between selectors.",
+          "deprecated": true,
+          "description": "Insert or remove a new-line between selectors.\nPlease use selectorSeparator option instead.",
           "type": "boolean",
           "default": false
         },
@@ -131,6 +132,16 @@
           "description": "Insert or remove a zero before a number that between 1 and 0.",
           "type": "boolean",
           "default": true
+        },
+        "stylusSupremacy.selectorSeparator": {
+          "description": "Represent a separator between selectors.\nIf the option insertNewLineBetweenSelectors is set to true, then ,\\n or \\n will be used. Also \\r\\n may be used in place of \\n according to newLineChar option.",
+          "enum": [
+            ",",
+            ", ",
+            ",\n",
+            "\n"
+          ],
+          "default": ", "
         },
         "stylusSupremacy.quoteChar": {
           "description": "Represent a quote character that is used to begin and terminate a string. You must choose either a single-quote or a double-quote.\nThis replaces the original quote characters with the given one, unless the string contains the given quote character (see font-family in .class2.) However, if the string starts with data:image/svg+xml;utf8,, the given quote character will be used, and the quote characters in the string will be escaped (see background-image in .class2.)",
