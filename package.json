@@ -2,7 +2,7 @@
   "name": "stylus-supremacy",
   "displayName": "Manta's Stylus Supremacy",
   "description": "Make your Stylus great again.",
-  "version": "2.8.1",
+  "version": "2.9.1",
   "publisher": "thisismanta",
   "categories": [
     "Formatters",
@@ -134,7 +134,7 @@
           "default": true
         },
         "stylusSupremacy.selectorSeparator": {
-          "description": "Represent a separator between selectors.\nIf the option insertNewLineBetweenSelectors is set to true, then ,\\n or \\n will be used. Also \\r\\n may be used in place of \\n according to newLineChar option.",
+          "description": "Represent a separator between selectors.\nIf the option insertNewLineBetweenSelectors is set to true, then \",\\n\" or \"\\n\" will be used. Also \\r\\n may be used in place of \\n according to newLineChar option.",
           "enum": [
             ",",
             ", ",
@@ -205,6 +205,14 @@
           "description": "Reduce margin and padding duplicate values by converting margin x x x x to margin x, margin x y x y to margin x y, and margin x y y y to margin x y y where x, y is a unique property value.",
           "type": "boolean",
           "default": false
+        },
+        "stylusSupremacy.ignoreFiles": {
+          "description": "Do not format the files that match the given Glob patterns.\nFor example, ignoreFiles: [\"bin/**\", \"src/vendors/**\"]",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
         }
       }
     }
