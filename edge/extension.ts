@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as fp from 'path'
 import * as vscode from 'vscode'
-import { format, schema, createFormattingOptions, createFormattingOptionsFromStylint } from 'stylus-supremacy'
+import { format, schema, createFormattingOptions, createFormattingOptionsFromStylint, checkIfFilePathIsIgnored } from 'stylus-supremacy'
 import * as JSONWithComments from 'comment-json'
 
 class Formatter implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider, vscode.OnTypeFormattingEditProvider {
@@ -30,10 +30,8 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
         return this.format(document, options, token, null, true)
     }
 
-    private findStylintOptions(document: vscode.TextDocument): object {
+    private findStylintOptions(document: vscode.TextDocument, rootPath: string): object {
         let stylintPath = null
-
-        const rootPath = vscode.workspace.getWorkspaceFolder(document.uri).uri.fsPath
 
         // Skip if there is no working directories (anonymous window)
         if (rootPath !== undefined) {
@@ -75,12 +73,19 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
     }
 
     private format(document: vscode.TextDocument, documentOptions: vscode.FormattingOptions, cancellationToken?: vscode.CancellationToken, originalRange?: vscode.Range, ignoreErrors: boolean = false): vscode.TextEdit[] | null {
+        const rootDirx = vscode.workspace.getWorkspaceFolder(document.uri)
+        const rootPath = rootDirx ? rootDirx.uri.fsPath : undefined
+
         const formattingOptions = {
             ...this.workspaceFormattingOptions,
-            ...this.findStylintOptions(document),
+            ...this.findStylintOptions(document, rootPath),
             tabStopChar: documentOptions.insertSpaces ? ' '.repeat(documentOptions.tabSize) : '\t',
             newLineChar: document.eol === vscode.EndOfLine.CRLF ? '\r\n' : '\n',
             wrapMode: !!originalRange // True for partial formatting, otherwise false
+        }
+
+        if (!originalRange && rootPath && checkIfFilePathIsIgnored(document.fileName, rootPath, formattingOptions)) {
+            return null
         }
 
         try {
