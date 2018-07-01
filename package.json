@@ -6,7 +6,7 @@
   "publisher": "thisismanta",
   "categories": [
     "Formatters",
-    "Languages"
+    "Programming Languages"
   ],
   "keywords": [
     "stylus",
@@ -227,15 +227,14 @@
     "postversion": "git push --tags --quiet origin master:master"
   },
   "devDependencies": {
-    "@types/cheerio": "~0.22.2",
-    "@types/comment-json": "^1.1.0",
-    "@types/node": "~7.0.0",
+    "@types/cheerio": "~0.22.0",
+    "@types/json5": "^0.0.29",
+    "@types/node": "^8.0.0",
     "cheerio": "~0.22.0",
     "typescript": "~2.6.1",
-    "vscode": "^1.1.4"
+    "vscode": "^1.1.18"
   },
   "dependencies": {
-    "babylon": "~6.18.0",
     "json5": "^1.0.1",
     "stylus": "~0.54.5",
     "stylus-supremacy": "^2.11.0"
