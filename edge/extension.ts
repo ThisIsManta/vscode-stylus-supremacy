@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as fp from 'path'
 import * as vscode from 'vscode'
-import { format, schema, createFormattingOptions, createFormattingOptionsFromStylint, checkIfFilePathIsIgnored } from 'stylus-supremacy'
+import { format, schema, createFormattingOptionsFromStylint, checkIfFilePathIsIgnored } from 'stylus-supremacy'
 import * as JSON5 from 'json5'
 
 class Formatter implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider, vscode.OnTypeFormattingEditProvider {
