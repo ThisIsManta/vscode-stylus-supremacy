@@ -237,6 +237,6 @@
   "dependencies": {
     "json5": "^1.0.1",
     "stylus": "~0.54.5",
-    "stylus-supremacy": "^2.11.0"
+    "stylus-supremacy": "^2.12.0"
   }
 }
