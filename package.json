@@ -2,7 +2,7 @@
   "name": "stylus-supremacy",
   "displayName": "Manta's Stylus Supremacy",
   "description": "Make your Stylus great again.",
-  "version": "2.12.1",
+  "version": "2.12.3",
   "publisher": "thisismanta",
   "categories": [
     "Formatters",
@@ -127,7 +127,7 @@
           "default": false
         },
         "stylusSupremacy.insertParenthesisAroundIfCondition": {
-          "description": "Insert or remove a pair of parentheses around if-condition.",
+          "description": "Insert a pair of parentheses around if-condition but does not remove the existing pair of parentheses.",
           "type": "boolean",
           "default": true
         },
