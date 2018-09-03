@@ -235,15 +235,15 @@
     "postversion": "git push --tags --quiet origin master:master"
   },
   "devDependencies": {
-    "@types/cheerio": "~0.22.0",
-    "@types/json5": "^0.0.29",
+    "@types/cheerio": "^0.22.9",
+    "@types/json5": "^0.0.30",
     "@types/node": "^8.0.0",
-    "cheerio": "~0.22.0",
-    "typescript": "~2.6.1",
-    "vscode": "^1.1.18"
+    "cheerio": "^0.22.0",
+    "typescript": "^3.0.0",
+    "vscode": "^1.1.21"
   },
   "dependencies": {
-    "json5": "^1.0.1",
+    "json5": "^2.0.1",
     "stylus": "~0.54.5",
     "stylus-supremacy": "^2.12.3"
   }
