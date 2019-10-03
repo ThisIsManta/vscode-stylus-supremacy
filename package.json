@@ -27,7 +27,7 @@
     "theme": "dark"
   },
   "engines": {
-    "vscode": "^1.18.0"
+    "vscode": "^1.38.0"
   },
   "activationEvents": [
     "onLanguage:stylus"
@@ -226,7 +226,6 @@
     }
   },
   "scripts": {
-    "postinstall": "node ./node_modules/vscode/bin/install",
     "compile": "tsc --watch --project ./",
     "upgrade": "npm install --force stylus-supremacy && git commit --all --message=\"Updated stylus-supremacy engine\"",
     "vscode:prepublish": "tsc --skipLibCheck --project ./",
@@ -235,6 +234,7 @@
     "postversion": "git push --tags --quiet origin master:master"
   },
   "devDependencies": {
+    "@types/vscode": "^1.38.0",
     "@types/cheerio": "^0.22.9",
     "@types/json5": "^0.0.30",
     "@types/node": "^8.0.0",
