@@ -234,17 +234,17 @@
     "postversion": "git push --tags --quiet origin master:master"
   },
   "devDependencies": {
-    "@types/vscode": "^1.38.0",
-    "@types/cheerio": "^0.22.9",
+    "@types/cheerio": "^0.22.13",
     "@types/json5": "^0.0.30",
-    "@types/node": "^8.0.0",
+    "@types/node": "^8.10.54",
+    "@types/vscode": "^1.38.0",
     "cheerio": "^0.22.0",
-    "typescript": "^3.0.0",
-    "vscode": "^1.1.21"
+    "typescript": "^3.6.3",
+    "vscode": "^1.1.36"
   },
   "dependencies": {
-    "json5": "^2.0.1",
-    "stylus": "~0.54.5",
-    "stylus-supremacy": "^2.12.7"
+    "json5": "^2.1.1",
+    "stylus": "^0.54.7",
+    "stylus-supremacy": "^2.13.0"
   }
 }
