@@ -1,249 +1,249 @@
 {
-  "name": "stylus-supremacy",
-  "displayName": "Manta's Stylus Supremacy",
-  "description": "Format your Stylus files with ease.",
-  "version": "2.13.0",
-  "publisher": "thisismanta",
-  "categories": [
-    "Formatters",
-    "Programming Languages"
-  ],
-  "keywords": [
-    "stylus",
-    "css",
-    "format",
-    "pretty",
-    "beautify"
-  ],
-  "homepage": "https://thisismanta.github.io/stylus-supremacy",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ThisIsManta/vscode-stylus-supremacy.git"
-  },
-  "bugs": "https://github.com/ThisIsManta/vscode-stylus-supremacy/issues",
-  "icon": "docs/logo.png",
-  "galleryBanner": {
-    "color": "#D50000",
-    "theme": "dark"
-  },
-  "engines": {
-    "vscode": "^1.44.0"
-  },
-  "activationEvents": [
-    "onLanguage:stylus"
-  ],
-  "main": "./dist/extension",
-  "contributes": {
-    "configuration": {
-      "title": "Stylus Supremacy",
-      "properties": {
-        "stylusSupremacy.insertColons": {
-          "description": "Insert or remove a colon between a property name and its value.",
-          "type": "boolean",
-          "default": true
-        },
-        "stylusSupremacy.insertSemicolons": {
-          "description": "Insert or remove a semi-colon after a property value, a variable declaration, a variable assignment and a mixin/function call.",
-          "type": "boolean",
-          "default": true
-        },
-        "stylusSupremacy.insertBraces": {
-          "description": "Insert or remove a pair of curly braces where they are supposed to be. Note that this option does not affect @block construction, see alwaysUseAtBlock.",
-          "type": "boolean",
-          "default": true
-        },
-        "stylusSupremacy.insertNewLineAroundImports": {
-          "description": "Insert a new-line around a group of @import/@require(s).\nOnly apply to imports outside a block when set to \"root\", or only apply to imports inside a block when set to \"nested\".",
-          "enum": [
-            true,
-            false,
-            "root",
-            "nested"
-          ],
-          "default": true
-        },
-        "stylusSupremacy.insertNewLineAroundBlocks": {
-          "description": "Insert a new-line around blocks.\nOnly apply to top-level blocks when set to \"root\", or only apply to nested blocks when set to \"nested\".",
-          "enum": [
-            true,
-            false,
-            "root",
-            "nested"
-          ],
-          "default": true
-        },
-        "stylusSupremacy.insertNewLineAroundProperties": {
-          "description": "Insert a new-line around a group of CSS properties.\nUnlike insertNewLineAroundBlocks and insertNewLineAroundOthers, this option cannot be set to \"root\" nor \"nested\" because CSS properties cannot be placed at the top level.",
-          "type": "boolean",
-          "default": false
-        },
-        "stylusSupremacy.insertNewLineAroundOthers": {
-          "description": "Insert a new-line around a group of non-properties, non-imports and non-blocks.\nOnly apply to others outside a block when set to \"root\", or only apply to others inside a block when set to \"nested\".",
-          "enum": [
-            true,
-            false,
-            "root",
-            "nested"
-          ],
-          "default": false
-        },
-        "stylusSupremacy.insertNewLineBetweenSelectors": {
-          "deprecated": true,
-          "description": "Insert or remove a new-line between selectors.\nPlease use selectorSeparator option instead.",
-          "type": "boolean",
-          "default": false
-        },
-        "stylusSupremacy.preserveNewLinesBetweenPropertyValues": {
-          "description": "Preserve the new-lines between property values instead of flattening the lines. This also adds/keeps the colon after the property name according to Stylus syntax.",
-          "enum": [
-            true,
-            false
-          ],
-          "default": false
-        },
-        "stylusSupremacy.insertSpaceBeforeComment": {
-          "description": "Insert or remove a white-space before a comment.",
-          "type": "boolean",
-          "default": true
-        },
-        "stylusSupremacy.insertSpaceAfterComment": {
-          "description": "Insert or remove a white-space after a comment.",
-          "type": "boolean",
-          "default": true
-        },
-        "stylusSupremacy.insertSpaceAfterComma": {
-          "description": "Insert or remove a white-space after a comma.",
-          "type": "boolean",
-          "default": true
-        },
-        "stylusSupremacy.insertSpaceInsideParenthesis": {
-          "description": "Insert or remove a white-space after an open parenthesis and before a close parenthesis.",
-          "type": "boolean",
-          "default": false
-        },
-        "stylusSupremacy.insertParenthesisAfterNegation": {
-          "description": "Insert a pair of parentheses or a white-space after a negation operator. This does nothing if a pair of parentheses is already after the negation operator.",
-          "type": "boolean",
-          "default": false
-        },
-        "stylusSupremacy.insertParenthesisAroundIfCondition": {
-          "description": "Insert a pair of parentheses around if-condition but does not remove the existing pair of parentheses.",
-          "type": "boolean",
-          "default": true
-        },
-        "stylusSupremacy.insertNewLineBeforeElse": {
-          "description": "Insert or remove a new-line before else keyword.",
-          "type": "boolean",
-          "default": false
-        },
-        "stylusSupremacy.insertLeadingZeroBeforeFraction": {
-          "description": "Insert or remove a zero before a number that between 1 and 0.",
-          "type": "boolean",
-          "default": true
-        },
-        "stylusSupremacy.selectorSeparator": {
-          "description": "Represent a separator between selectors.\nIf the option insertNewLineBetweenSelectors is set to true, then \",\\n\" or \"\\n\" will be used. Also \\r\\n may be used in place of \\n according to newLineChar option.",
-          "enum": [
-            ",",
-            ", ",
-            ",\n",
-            "\n"
-          ],
-          "default": ", "
-        },
-        "stylusSupremacy.quoteChar": {
-          "description": "Represent a quote character that is used to begin and terminate a string. You must choose either a single-quote or a double-quote.\nThis replaces the original quote characters with the given one, unless the string contains the given quote character (see font-family in .class2.) However, if the string starts with data:image/svg+xml;utf8,, the given quote character will be used, and the quote characters in the string will be escaped (see background-image in .class2.)",
-          "enum": [
-            "'",
-            "\""
-          ],
-          "default": "'"
-        },
-        "stylusSupremacy.sortProperties": {
-          "description": "Can be either false for not sorting, \"alphabetical\" for sorting CSS properties from A to Z, \"grouped\" for sorting CSS properties according to Stylint and nib, or an array of property names that defines the property order, for example [\"color\", \"background\", \"display\"].",
-          "oneOf": [
-            {
-              "enum": [
-                false,
-                "alphabetical",
-                "grouped"
-              ]
-            },
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "uniqueItems": true
-            }
-          ],
-          "default": false
-        },
-        "stylusSupremacy.alwaysUseImport": {
-          "description": "Replace @require with @import, or do nothing.",
-          "type": "boolean",
-          "default": false
-        },
-        "stylusSupremacy.alwaysUseNot": {
-          "description": "Replace ! operator with not keyword, or vice versa.",
-          "type": "boolean",
-          "default": false
-        },
-        "stylusSupremacy.alwaysUseAtBlock": {
-          "description": "Replace an increased-indent at-block construction with an explicit one with @block keyword or vice versa.\nNote that this option does not incorporate insertBraces option.",
-          "type": "boolean",
-          "default": false
-        },
-        "stylusSupremacy.alwaysUseExtends": {
-          "description": "Convert @extend keyword to @extends keyword, or vice versa.",
-          "type": "boolean",
-          "default": false
-        },
-        "stylusSupremacy.alwaysUseNoneOverZero": {
-          "description": "Replace 0 (regardless of its unit) with none for border and outline properties, or do nothing.",
-          "type": "boolean",
-          "default": false
-        },
-        "stylusSupremacy.alwaysUseZeroWithoutUnit": {
-          "description": "Replace 0 (regardless of its unit) with 0 (without units), or do nothing.",
-          "type": "boolean",
-          "default": false
-        },
-        "stylusSupremacy.reduceMarginAndPaddingValues": {
-          "description": "Reduce margin and padding duplicate values by converting margin x x x x to margin x, margin x y x y to margin x y, and margin x y y y to margin x y y where x, y is a unique property value.",
-          "type": "boolean",
-          "default": false
-        },
-        "stylusSupremacy.ignoreFiles": {
-          "description": "Do not format the files that match the given Glob patterns.\nFor example, ignoreFiles: [\"bin/**\", \"src/vendors/**\"]",
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": []
-        }
-      }
-    }
-  },
-  "scripts": {
-    "compile": "tsc --watch --project ./",
-    "upgrade": "npm install --force stylus-supremacy && git commit --all --message=\"Updated stylus-supremacy engine\"",
-    "vscode:prepublish": "tsc --skipLibCheck --project ./",
-    "preversion": "npm run vscode:prepublish && node dist/configurationGenerator.js",
-    "version": "vsce publish",
-    "postversion": "git push --tags --quiet origin master:master"
-  },
-  "devDependencies": {
-    "@types/cheerio": "^0.22.15",
-    "@types/json5": "^0.0.30",
-    "@types/node": "^12.0.0",
-    "@types/vscode": "^1.44.0",
-    "cheerio": "^0.22.0",
-    "typescript": "^3.8.3"
-  },
-  "dependencies": {
-    "json5": "^2.1.3",
-    "stylus": "^0.54.7",
-    "stylus-supremacy": "2.13.0"
-  }
+	"name": "stylus-supremacy",
+	"displayName": "Manta's Stylus Supremacy",
+	"description": "Format your Stylus files with ease.",
+	"version": "2.13.0",
+	"publisher": "thisismanta",
+	"categories": [
+		"Formatters",
+		"Programming Languages"
+	],
+	"keywords": [
+		"stylus",
+		"css",
+		"format",
+		"pretty",
+		"beautify"
+	],
+	"homepage": "https://thisismanta.github.io/stylus-supremacy",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ThisIsManta/vscode-stylus-supremacy.git"
+	},
+	"bugs": "https://github.com/ThisIsManta/vscode-stylus-supremacy/issues",
+	"icon": "docs/logo.png",
+	"galleryBanner": {
+		"color": "#D50000",
+		"theme": "dark"
+	},
+	"engines": {
+		"vscode": "^1.44.0"
+	},
+	"activationEvents": [
+		"onLanguage:stylus"
+	],
+	"main": "./dist/extension",
+	"contributes": {
+		"configuration": {
+			"title": "Stylus Supremacy",
+			"properties": {
+				"stylusSupremacy.insertColons": {
+					"description": "Insert or remove a colon between a property name and its value.",
+					"type": "boolean",
+					"default": true
+				},
+				"stylusSupremacy.insertSemicolons": {
+					"description": "Insert or remove a semi-colon after a property value, a variable declaration, a variable assignment and a mixin/function call.",
+					"type": "boolean",
+					"default": true
+				},
+				"stylusSupremacy.insertBraces": {
+					"description": "Insert or remove a pair of curly braces where they are supposed to be. Note that this option does not affect @block construction, see alwaysUseAtBlock.",
+					"type": "boolean",
+					"default": true
+				},
+				"stylusSupremacy.insertNewLineAroundImports": {
+					"description": "Insert a new-line around a group of @import/@require(s).\nOnly apply to imports outside a block when set to \"root\", or only apply to imports inside a block when set to \"nested\".",
+					"enum": [
+						true,
+						false,
+						"root",
+						"nested"
+					],
+					"default": true
+				},
+				"stylusSupremacy.insertNewLineAroundBlocks": {
+					"description": "Insert a new-line around blocks.\nOnly apply to top-level blocks when set to \"root\", or only apply to nested blocks when set to \"nested\".",
+					"enum": [
+						true,
+						false,
+						"root",
+						"nested"
+					],
+					"default": true
+				},
+				"stylusSupremacy.insertNewLineAroundProperties": {
+					"description": "Insert a new-line around a group of CSS properties.\nUnlike insertNewLineAroundBlocks and insertNewLineAroundOthers, this option cannot be set to \"root\" nor \"nested\" because CSS properties cannot be placed at the top level.",
+					"type": "boolean",
+					"default": false
+				},
+				"stylusSupremacy.insertNewLineAroundOthers": {
+					"description": "Insert a new-line around a group of non-properties, non-imports and non-blocks.\nOnly apply to others outside a block when set to \"root\", or only apply to others inside a block when set to \"nested\".",
+					"enum": [
+						true,
+						false,
+						"root",
+						"nested"
+					],
+					"default": false
+				},
+				"stylusSupremacy.insertNewLineBetweenSelectors": {
+					"deprecated": true,
+					"description": "Insert or remove a new-line between selectors.\nPlease use selectorSeparator option instead.",
+					"type": "boolean",
+					"default": false
+				},
+				"stylusSupremacy.preserveNewLinesBetweenPropertyValues": {
+					"description": "Preserve the new-lines between property values instead of flattening the lines. This also adds/keeps the colon after the property name according to Stylus syntax.",
+					"enum": [
+						true,
+						false
+					],
+					"default": false
+				},
+				"stylusSupremacy.insertSpaceBeforeComment": {
+					"description": "Insert or remove a white-space before a comment.",
+					"type": "boolean",
+					"default": true
+				},
+				"stylusSupremacy.insertSpaceAfterComment": {
+					"description": "Insert or remove a white-space after a comment.",
+					"type": "boolean",
+					"default": true
+				},
+				"stylusSupremacy.insertSpaceAfterComma": {
+					"description": "Insert or remove a white-space after a comma.",
+					"type": "boolean",
+					"default": true
+				},
+				"stylusSupremacy.insertSpaceInsideParenthesis": {
+					"description": "Insert or remove a white-space after an open parenthesis and before a close parenthesis.",
+					"type": "boolean",
+					"default": false
+				},
+				"stylusSupremacy.insertParenthesisAfterNegation": {
+					"description": "Insert a pair of parentheses or a white-space after a negation operator. This does nothing if a pair of parentheses is already after the negation operator.",
+					"type": "boolean",
+					"default": false
+				},
+				"stylusSupremacy.insertParenthesisAroundIfCondition": {
+					"description": "Insert a pair of parentheses around if-condition but does not remove the existing pair of parentheses.",
+					"type": "boolean",
+					"default": true
+				},
+				"stylusSupremacy.insertNewLineBeforeElse": {
+					"description": "Insert or remove a new-line before else keyword.",
+					"type": "boolean",
+					"default": false
+				},
+				"stylusSupremacy.insertLeadingZeroBeforeFraction": {
+					"description": "Insert or remove a zero before a number that between 1 and 0.",
+					"type": "boolean",
+					"default": true
+				},
+				"stylusSupremacy.selectorSeparator": {
+					"description": "Represent a separator between selectors.\nIf the option insertNewLineBetweenSelectors is set to true, then \",\\n\" or \"\\n\" will be used. Also \\r\\n may be used in place of \\n according to newLineChar option.",
+					"enum": [
+						",",
+						", ",
+						",\n",
+						"\n"
+					],
+					"default": ", "
+				},
+				"stylusSupremacy.quoteChar": {
+					"description": "Represent a quote character that is used to begin and terminate a string. You must choose either a single-quote or a double-quote.\nThis replaces the original quote characters with the given one, unless the string contains the given quote character (see font-family in .class2.) However, if the string starts with data:image/svg+xml;utf8,, the given quote character will be used, and the quote characters in the string will be escaped (see background-image in .class2.)",
+					"enum": [
+						"'",
+						"\""
+					],
+					"default": "'"
+				},
+				"stylusSupremacy.sortProperties": {
+					"description": "Can be either false for not sorting, \"alphabetical\" for sorting CSS properties from A to Z, \"grouped\" for sorting CSS properties according to Stylint and nib, or an array of property names that defines the property order, for example [\"color\", \"background\", \"display\"].",
+					"oneOf": [
+						{
+							"enum": [
+								false,
+								"alphabetical",
+								"grouped"
+							]
+						},
+						{
+							"type": "array",
+							"items": {
+								"type": "string"
+							},
+							"uniqueItems": true
+						}
+					],
+					"default": false
+				},
+				"stylusSupremacy.alwaysUseImport": {
+					"description": "Replace @require with @import, or do nothing.",
+					"type": "boolean",
+					"default": false
+				},
+				"stylusSupremacy.alwaysUseNot": {
+					"description": "Replace ! operator with not keyword, or vice versa.",
+					"type": "boolean",
+					"default": false
+				},
+				"stylusSupremacy.alwaysUseAtBlock": {
+					"description": "Replace an increased-indent at-block construction with an explicit one with @block keyword or vice versa.\nNote that this option does not incorporate insertBraces option.",
+					"type": "boolean",
+					"default": false
+				},
+				"stylusSupremacy.alwaysUseExtends": {
+					"description": "Convert @extend keyword to @extends keyword, or vice versa.",
+					"type": "boolean",
+					"default": false
+				},
+				"stylusSupremacy.alwaysUseNoneOverZero": {
+					"description": "Replace 0 (regardless of its unit) with none for border and outline properties, or do nothing.",
+					"type": "boolean",
+					"default": false
+				},
+				"stylusSupremacy.alwaysUseZeroWithoutUnit": {
+					"description": "Replace 0 (regardless of its unit) with 0 (without units), or do nothing.",
+					"type": "boolean",
+					"default": false
+				},
+				"stylusSupremacy.reduceMarginAndPaddingValues": {
+					"description": "Reduce margin and padding duplicate values by converting margin x x x x to margin x, margin x y x y to margin x y, and margin x y y y to margin x y y where x, y is a unique property value.",
+					"type": "boolean",
+					"default": false
+				},
+				"stylusSupremacy.ignoreFiles": {
+					"description": "Do not format the files that match the given Glob patterns.\nFor example, ignoreFiles: [\"bin/**\", \"src/vendors/**\"]",
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": []
+				}
+			}
+		}
+	},
+	"scripts": {
+		"compile": "tsc --watch --project ./",
+		"upgrade": "npm install --force stylus-supremacy && git commit --all --message=\"Updated stylus-supremacy engine\"",
+		"vscode:prepublish": "tsc --skipLibCheck --project ./",
+		"preversion": "npm run vscode:prepublish && node dist/configurationGenerator.js",
+		"version": "vsce publish",
+		"postversion": "git push --tags --quiet origin master:master"
+	},
+	"devDependencies": {
+		"@types/cheerio": "^0.22.15",
+		"@types/json5": "^0.0.30",
+		"@types/node": "^12.0.0",
+		"@types/vscode": "^1.44.0",
+		"cheerio": "^0.22.0",
+		"typescript": "^3.8.3"
+	},
+	"dependencies": {
+		"json5": "^2.1.3",
+		"stylus": "^0.54.7",
+		"stylus-supremacy": "2.13.0"
+	}
 }

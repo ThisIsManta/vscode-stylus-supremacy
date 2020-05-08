@@ -23,4 +23,4 @@ packageJson.contributes.configuration.properties = Object.keys(schema)
 		return hash
 	}, {})
 
-fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, '  '))
+fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, '\t'))
