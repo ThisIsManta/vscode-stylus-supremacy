@@ -2,7 +2,7 @@
 	"name": "stylus-supremacy",
 	"displayName": "Manta's Stylus Supremacy",
 	"description": "Format your Stylus files with ease.",
-	"version": "2.13.0",
+	"version": "2.14.3",
 	"publisher": "thisismanta",
 	"categories": [
 		"Formatters",
@@ -205,7 +205,7 @@
 					"default": false
 				},
 				"stylusSupremacy.alwaysUseZeroWithoutUnit": {
-					"description": "Replace 0 (regardless of its unit) with 0 (without units), or do nothing.",
+					"description": "Replace 0 (regardless of its unit) with 0 (without units), or do nothing.\nThere is an exception for flex-basis, which 0 will always have the unit of %, because of the problem with Internet Explorer.",
 					"type": "boolean",
 					"default": false
 				},
