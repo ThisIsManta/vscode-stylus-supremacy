@@ -245,5 +245,8 @@
 		"json5": "^2.1.3",
 		"stylus": "^0.54.7",
 		"stylus-supremacy": "2.13.0"
-	}
+	},
+	"extensionDependencies": [
+		"sysoev.language-stylus"
+	]
 }
