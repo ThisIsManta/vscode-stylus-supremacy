@@ -32,7 +32,7 @@
 	"activationEvents": [
 		"onLanguage:stylus"
 	],
-	"main": "./dist/extension",
+	"main": "dist/extension.js",
 	"contributes": {
 		"configuration": {
 			"title": "Stylus Supremacy",
@@ -226,10 +226,12 @@
 		}
 	},
 	"scripts": {
-		"compile": "tsc --watch --project ./",
 		"upgrade": "npm install --force stylus-supremacy@latest && git commit --all --message=\"Updated stylus-supremacy engine\"",
-		"vscode:prepublish": "tsc --skipLibCheck --project ./",
-		"preversion": "npm run vscode:prepublish && node dist/configurationGenerator.js",
+		"postinstall": "code --install-extension connor4312.esbuild-problem-matchers",
+		"build": "rm -rf ./dist && esbuild edge/extension.ts --bundle --platform=node --outfile=dist/extension.js --external:vscode --external:stylus --format=cjs",
+		"watch": "npm run build -- --watch --sourcemap",
+		"vscode:prepublish": "tsc --skipLibCheck --noEmit && npm run build -- --minify",
+		"preversion": "npm run vscode:prepublish && ts-node ./edge/configurationGenerator.ts",
 		"version": "vsce publish",
 		"postversion": "git push --tags --quiet origin master:master"
 	},
@@ -239,12 +241,14 @@
 		"@types/node": "^14.0.0",
 		"@types/vscode": "^1.57.0",
 		"cheerio": "^0.22.0",
+		"esbuild": "^0.12.12",
+		"json5": "^2.2.0",
+		"stylus-supremacy": "^2.15.0",
+		"ts-node": "^10.0.0",
 		"typescript": "^4.3.4"
 	},
 	"dependencies": {
-		"json5": "^2.2.0",
-		"stylus": "^0.54.8",
-		"stylus-supremacy": "^2.15.0"
+		"stylus": "^0.54.8"
 	},
 	"extensionDependencies": [
 		"sysoev.language-stylus"
