@@ -4,5 +4,8 @@
 	"editor.tabSize": 2,
 	"files.exclude": {
 		"dist": true
-	}
+	},
+	"cSpell.words": [
+		"stylint"
+	]
 }
