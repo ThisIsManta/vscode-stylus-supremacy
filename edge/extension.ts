@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import * as fp from 'path'
 import * as vscode from 'vscode'
 import { format, schema, createFormattingOptionsFromStylint, checkIfFilePathIsIgnored } from 'stylus-supremacy'
-import * as JSON5 from 'json5'
+import parseJSON5 from 'json5/lib/parse'
 
 class Formatter implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider, vscode.OnTypeFormattingEditProvider {
 	private workspaceFormattingOptions: object
@@ -62,7 +62,7 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
 		// Read `.stylintrc` and convert it to the standard formatting options
 		if (stylintPath) {
 			try {
-				const stylintOptions = JSON5.parse(fs.readFileSync(stylintPath, 'utf-8'))
+				const stylintOptions = parseJSON5(fs.readFileSync(stylintPath, 'utf-8'))
 				return createFormattingOptionsFromStylint(stylintOptions)
 			} catch (ex) {
 				console.error(ex)

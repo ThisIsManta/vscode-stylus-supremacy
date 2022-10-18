@@ -228,7 +228,7 @@
 	"scripts": {
 		"upgrade": "npm install --force stylus-supremacy@latest && git commit --all --message=\"Updated stylus-supremacy engine\"",
 		"postinstall": "code --install-extension connor4312.esbuild-problem-matchers",
-		"build": "rm -rf ./dist && esbuild edge/extension.ts --bundle --platform=node --outfile=dist/extension.js --external:vscode --external:stylus --format=cjs",
+		"build": "rm -rf ./dist && esbuild edge/extension.ts --bundle --minify --platform=node --outfile=dist/extension.js --external:vscode --external:stylus --format=cjs",
 		"watch": "npm run build -- --watch --sourcemap",
 		"vscode:prepublish": "tsc --skipLibCheck --noEmit && npm run build -- --minify",
 		"preversion": "npm run vscode:prepublish && ts-node ./edge/configurationGenerator.ts",
