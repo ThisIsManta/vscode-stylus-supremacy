@@ -240,7 +240,7 @@
 		"@types/json5": "^2.2.0",
 		"@types/node": "^16.0.0",
 		"@types/vscode": "^1.72.0",
-		"cheerio": "^0.22.0",
+		"cheerio": "^1.0.0-rc.12",
 		"esbuild": "^0.16.16",
 		"stylus-supremacy": "^2.17.5",
 		"ts-node": "^10.9.1",
