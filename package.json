@@ -236,15 +236,15 @@
 		"postversion": "git push --tags --quiet origin master:master"
 	},
 	"devDependencies": {
-		"@types/cheerio": "^0.22.29",
+		"@types/cheerio": "^0.22.31",
 		"@types/json5": "^2.2.0",
 		"@types/node": "^16.0.0",
 		"@types/vscode": "^1.72.0",
 		"cheerio": "^0.22.0",
-		"esbuild": "^0.15.11",
-		"stylus-supremacy": "^2.17.3",
+		"esbuild": "^0.16.16",
+		"stylus-supremacy": "^2.17.5",
 		"ts-node": "^10.9.1",
-		"typescript": "^4.3.4"
+		"typescript": "^4.9.4"
 	},
 	"extensionDependencies": [
 		"sysoev.language-stylus"
