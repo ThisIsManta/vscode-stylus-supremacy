@@ -230,12 +230,12 @@
 		"postinstall": "code --install-extension connor4312.esbuild-problem-matchers",
 		"build": "rm -rf ./dist && esbuild edge/extension.ts --bundle --minify --platform=node --outfile=dist/extension.js --external:vscode --format=cjs",
 		"watch": "npm run build -- --watch --sourcemap",
-		"vscode:prepublish": "tsc --skipLibCheck --noEmit && npm run build -- --minify",
-		"preversion": "npm run vscode:prepublish && ts-node ./edge/configurationGenerator.ts",
-		"version": "vsce publish",
-		"postversion": "git push --tags --quiet origin master:master"
+		"vscode:prepublish": "npm run build -- --minify",
+		"preversion": "ts-node ./edge/configurationGenerator.ts",
+		"version": "npx vsce publish -p $VSCE_PUBLISH_TOKEN"
 	},
 	"devDependencies": {
+		"@thisismanta/semantic-version": "^5.0.2",
 		"@types/cheerio": "^0.22.31",
 		"@types/json5": "^2.2.0",
 		"@types/node": "^16.0.0",
