@@ -1,4 +1,4 @@
-import Cheerio from 'cheerio'
+import cheerio from 'cheerio'
 import { schema } from 'stylus-supremacy'
 import { execa } from 'execa'
 
@@ -7,7 +7,7 @@ const configs = Object.keys(schema)
 	.map(name => {
 		const item = { ...schema[name] }
 
-		const $description = Cheerio.load('<p>' + item.description + '</p>').root()
+		const $description = cheerio.load('<p>' + item.description + '</p>').root()
 		$description.find('.no-vsce').remove()
 		item.description = $description.text().trim()
 

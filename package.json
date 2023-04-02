@@ -238,10 +238,10 @@
 		"@thisismanta/semantic-version": "^5.0.2",
 		"@types/cheerio": "^0.22.31",
 		"@types/json5": "^2.2.0",
-		"@types/node": "^16.0.0",
+		"@types/node": "^18.15.0",
 		"@types/vscode": "^1.72.0",
-		"cheerio": "^0.22.0",
-		"esbuild": "^0.16.16",
+		"cheerio": "^1.0.0-rc.12",
+		"esbuild": "^0.17.15",
 		"execa": "npm:@esm2cjs/execa@^6.1.1-cjs.1",
 		"stylus-supremacy": "^2.17.5",
 		"ts-node": "^10.9.1",
@@ -251,6 +251,6 @@
 		"sysoev.language-stylus"
 	],
 	"volta": {
-		"node": "16.17.0"
+		"node": "18.15.0"
 	}
 }
