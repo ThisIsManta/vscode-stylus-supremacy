@@ -1,10 +1,8 @@
-import * as fs from 'fs'
-import * as Cheerio from 'cheerio'
+import Cheerio from 'cheerio'
 import { schema } from 'stylus-supremacy'
+import { execa } from 'execa'
 
-const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
-
-packageJson.contributes.configuration.properties = Object.keys(schema)
+const configs = Object.keys(schema)
 	.filter(name => schema[name].hideInVSCE !== true)
 	.map(name => {
 		const item = { ...schema[name] }
@@ -16,11 +14,19 @@ packageJson.contributes.configuration.properties = Object.keys(schema)
 		delete item.example
 		delete item.hideInDemo
 
-		return [name, item]
+		return ['stylusSupremacy.' + name, item]
 	})
-	.reduce((hash, pair) => {
-		hash['stylusSupremacy.' + pair[0]] = pair[1]
-		return hash
-	}, {})
 
-fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, '\t'))
+async function main() {
+	console.log('Updating `contributes.configuration.properties` field in package.json')
+
+	await execa('npm', ['pkg', 'delete', 'contributes.configuration.properties'])
+
+	for (const [name, item] of configs) {
+		await execa('npm', ['pkg', 'set', '--json', `contributes.configuration.properties[${name}]=${JSON.stringify(item)}`])
+	}
+
+	await execa('git', ['add', './package.json'])
+}
+
+main()
