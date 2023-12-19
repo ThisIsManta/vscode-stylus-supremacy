@@ -236,21 +236,21 @@
 	},
 	"devDependencies": {
 		"@thisismanta/semantic-version": "^5.0.2",
-		"@types/cheerio": "^0.22.31",
+		"@types/cheerio": "^0.22.35",
 		"@types/json5": "^2.2.0",
-		"@types/node": "^18.15.0",
+		"@types/node": "^20.10.0",
 		"@types/vscode": "^1.72.0",
 		"cheerio": "^1.0.0-rc.12",
-		"esbuild": "^0.17.15",
+		"esbuild": "^0.19.10",
 		"execa": "npm:@esm2cjs/execa@^6.1.1-cjs.1",
 		"stylus-supremacy": "^2.17.5",
-		"ts-node": "^10.9.1",
-		"typescript": "^4.9.4"
+		"ts-node": "^10.9.2",
+		"typescript": "^5.3.3"
 	},
 	"extensionDependencies": [
 		"sysoev.language-stylus"
 	],
 	"volta": {
-		"node": "18.15.0"
+		"node": "20.10.0"
 	}
 }
