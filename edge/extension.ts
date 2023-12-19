@@ -63,7 +63,10 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
 		if (stylintPath) {
 			try {
 				const stylintOptions = parseJSON5(fs.readFileSync(stylintPath, 'utf-8'))
-				return createFormattingOptionsFromStylint(stylintOptions)
+				const vscodeCompatibleOptions = createFormattingOptionsFromStylint(stylintOptions)
+				return Object.fromEntries(Object.entries(vscodeCompatibleOptions)
+					.map(([key, value]) => [key.replace(/^stylusSupremacy\./, ''), value])
+				)
 			} catch (ex) {
 				console.error(ex)
 			}
