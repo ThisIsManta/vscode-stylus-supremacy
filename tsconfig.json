@@ -6,6 +6,7 @@
 		"lib": [
 			"ESNext"
 		],
+		"skipLibCheck": true,
 		"sourceMap": true,
 		"rootDir": "edge",
 		"esModuleInterop": true

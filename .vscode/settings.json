@@ -2,7 +2,7 @@
 	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
 	"editor.tabSize": 2,
-	"files.exclude": {
+	"search.exclude": {
 		"dist": true
 	},
 	"cSpell.words": [

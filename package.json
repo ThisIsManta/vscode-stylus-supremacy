@@ -2,7 +2,7 @@
 	"name": "stylus-supremacy",
 	"displayName": "Manta's Stylus Supremacy",
 	"description": "Format your Stylus files with ease.",
-	"version": "2.17.7",
+	"version": "3.0.0",
 	"publisher": "thisismanta",
 	"categories": [
 		"Formatters",
@@ -27,7 +27,8 @@
 		"theme": "dark"
 	},
 	"engines": {
-		"vscode": "^1.72.0"
+		"node": ">=18.0.0",
+		"vscode": "^1.92.0"
 	},
 	"activationEvents": [
 		"onLanguage:stylus"
@@ -231,26 +232,28 @@
 		"build": "rm -rf ./dist && esbuild edge/extension.ts --bundle --minify --platform=node --outfile=dist/extension.js --external:vscode --format=cjs",
 		"watch": "npm run build -- --watch --sourcemap",
 		"vscode:prepublish": "npm run build -- --minify",
-		"preversion": "ts-node ./edge/configurationGenerator.ts",
-		"version": "npx vsce publish -p $VSCE_PUBLISH_TOKEN"
+		"preversion": "tsx ./edge/configurationGenerator.ts",
+		"version": "npx @vscode/vsce publish --pat $VSCE_PUBLISH_TOKEN"
 	},
 	"devDependencies": {
-		"@thisismanta/semantic-version": "^5.0.2",
+		"@thisismanta/semantic-version": "^9.1.0",
 		"@types/cheerio": "^0.22.35",
 		"@types/json5": "^2.2.0",
-		"@types/node": "^20.10.0",
-		"@types/vscode": "^1.72.0",
-		"cheerio": "^1.0.0-rc.12",
-		"esbuild": "^0.19.10",
-		"execa": "npm:@esm2cjs/execa@^6.1.1-cjs.1",
-		"stylus-supremacy": "^2.17.5",
-		"ts-node": "^10.9.2",
-		"typescript": "^5.3.3"
+		"@types/node": "^18.17.0",
+		"@types/vscode": "^1.92.0",
+		"cheerio": "^1.0.0",
+		"esbuild": "^0.23.1",
+		"execa": "^9.3.1",
+		"lefthook": "^1.7.14",
+		"stylus-supremacy": "^4.0.0",
+		"tsx": "^4.18.0",
+		"typescript": "^5.5.4"
+	},
+	"overrides": {
+		"mout": "1.2.4",
+		"yargs-parser": "5.0.1"
 	},
 	"extensionDependencies": [
 		"sysoev.language-stylus"
-	],
-	"volta": {
-		"node": "20.10.0"
-	}
+	]
 }
