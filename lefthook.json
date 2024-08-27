@@ -1,0 +1,16 @@
+{
+	"pre-commit": {
+		"commands": {
+			"type": {
+				"run": "npx tsc --noEmit"
+			}
+		}
+	},
+	"commit-msg": {
+		"commands": {
+			"lint": {
+				"run": "npx lint-commit-message {1}"
+			}
+		}
+	}
+}
