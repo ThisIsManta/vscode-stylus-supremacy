@@ -12,7 +12,7 @@
 		"stylus",
 		"css",
 		"format",
-		"pretty",
+		"prettier",
 		"beautify"
 	],
 	"homepage": "https://thisismanta.github.io/stylus-supremacy",
@@ -27,8 +27,8 @@
 		"theme": "dark"
 	},
 	"engines": {
-		"node": ">=18.0.0",
-		"vscode": "^1.92.0"
+		"node": ">=22",
+		"vscode": "^1.118.0"
 	},
 	"activationEvents": [
 		"onLanguage:stylus"
@@ -227,30 +227,37 @@
 		}
 	},
 	"scripts": {
-		"upgrade": "npm install --force stylus-supremacy@latest && git commit --all --message=\"Updated stylus-supremacy engine\"",
+		"upgrade": "npm install --force stylus-supremacy@latest && git commit --all --message=\"build: stylus-supremacy engine upgrade\"",
 		"postinstall": "code --install-extension connor4312.esbuild-problem-matchers",
-		"build": "rm -rf ./dist && esbuild edge/extension.ts --bundle --minify --platform=node --outfile=dist/extension.js --external:vscode --format=cjs",
+		"build": "rm -rf ./dist && esbuild edge/extension.ts --bundle --minify --platform=node --target=node22 --format=cjs --outfile=dist/extension.js --external:vscode",
 		"watch": "npm run build -- --watch --sourcemap",
-		"vscode:prepublish": "npm run build -- --minify",
-		"preversion": "tsx ./edge/configurationGenerator.ts",
-		"version": "npx @vscode/vsce publish --pat $VSCE_PUBLISH_TOKEN"
+		"vscode:prepublish": "npm run build",
+		"preversion": "tsc",
+		"version": "node --experimental-transform-types ./edge/configurationGenerator.mts",
+		"postversion": "npx @vscode/vsce publish --pat $VSCE_PUBLISH_TOKEN"
 	},
 	"devDependencies": {
-		"@thisismanta/semantic-version": "^9.1.0",
-		"@types/cheerio": "^0.22.35",
-		"@types/json5": "^2.2.0",
-		"@types/node": "^18.17.0",
-		"@types/vscode": "^1.92.0",
-		"cheerio": "^1.0.0",
-		"esbuild": "^0.23.1",
-		"execa": "^9.3.1",
-		"lefthook": "^1.7.14",
-		"stylus-supremacy": "^4.0.0",
-		"tsx": "^4.18.0",
-		"typescript": "^5.5.4"
+		"@thisismanta/semantic-version": "^11.2.1",
+		"@types/node": "^22.19.17",
+		"@types/vscode": "^1.118.0",
+		"cheerio": "^1.2.0",
+		"esbuild": "^0.28.0",
+		"execa": "^9.6.1",
+		"lefthook": "^2.1.6",
+		"stylus-supremacy": "^5.0.2",
+		"typescript": "^6.0.3"
 	},
 	"overrides": {
+		"brace-expansion@2.0.2": "2.0.3",
+		"glob@7.0.4": {
+			"brace-expansion": "1.1.14",
+			"minimatch": "3.1.5"
+		},
+		"glob@10.5.0": {
+			"minimatch": "9.0.9"
+		},
 		"mout": "1.2.4",
+		"picomatch@2.2.2": "3.0.2",
 		"yargs-parser": "5.0.1"
 	},
 	"extensionDependencies": [

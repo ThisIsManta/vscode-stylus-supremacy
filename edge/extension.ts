@@ -2,10 +2,10 @@ import * as fs from 'fs'
 import * as fp from 'path'
 import * as vscode from 'vscode'
 import { format, schema, createFormattingOptionsFromStylint, checkIfFilePathIsIgnored } from 'stylus-supremacy'
-import parseJSON5 from 'json5/lib/parse'
+import JSON5 from 'json5'
 
 class Formatter implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider, vscode.OnTypeFormattingEditProvider {
-	private workspaceFormattingOptions: object
+	private workspaceFormattingOptions: Record<string, unknown> = {}
 
 	configure() {
 		this.workspaceFormattingOptions = {}
@@ -27,11 +27,11 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
 	}
 
 	provideOnTypeFormattingEdits(document: vscode.TextDocument, position: vscode.Position, ch: string, options: vscode.FormattingOptions, token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
-		return this.format(document, options, token, null, true)
+		return this.format(document, options, token, undefined, true)
 	}
 
 	private findStylintOptions(document: vscode.TextDocument, rootPath: string): object {
-		let stylintPath = null
+		let stylintPath: string | undefined = undefined
 
 		// Skip if there is no working directories (anonymous window)
 		if (rootPath !== undefined) {
@@ -62,13 +62,13 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
 		// Read `.stylintrc` and convert it to the standard formatting options
 		if (stylintPath) {
 			try {
-				const stylintOptions = parseJSON5(fs.readFileSync(stylintPath, 'utf-8'))
+				const stylintOptions = JSON5.parse(fs.readFileSync(stylintPath, 'utf-8'))
 				const vscodeCompatibleOptions = createFormattingOptionsFromStylint(stylintOptions)
 				return Object.fromEntries(Object.entries(vscodeCompatibleOptions)
 					.map(([key, value]) => [key.replace(/^stylusSupremacy\./, ''), value])
 				)
-			} catch (ex) {
-				console.error(ex)
+			} catch (error) {
+				console.error(error)
 			}
 		}
 
@@ -77,7 +77,7 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
 
 	private format(document: vscode.TextDocument, documentOptions: vscode.FormattingOptions, cancellationToken?: vscode.CancellationToken, originalRange?: vscode.Range, ignoreErrors: boolean = false): vscode.TextEdit[] | null {
 		const rootDirx = vscode.workspace.getWorkspaceFolder(document.uri)
-		const rootPath = rootDirx ? rootDirx.uri.fsPath : undefined
+		const rootPath = rootDirx ? rootDirx.uri.fsPath : ''
 
 		const formattingOptions = {
 			...this.workspaceFormattingOptions,
@@ -173,10 +173,10 @@ class Formatter implements vscode.DocumentFormattingEditProvider, vscode.Documen
 				)]
 			}
 
-		} catch (ex) {
-			if (ignoreErrors === false) {
-				vscode.window.showWarningMessage(ex.message)
-				console.error(ex)
+		} catch (error) {
+			if (!ignoreErrors) {
+				vscode.window.showWarningMessage(String(error))
+				console.error(error)
 			}
 
 			return null

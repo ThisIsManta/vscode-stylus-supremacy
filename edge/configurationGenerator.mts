@@ -17,16 +17,12 @@ const configs = Object.keys(schema)
 		return ['stylusSupremacy.' + name, item]
 	})
 
-async function main() {
-	console.log('Updating `contributes.configuration.properties` field in package.json')
+console.log('Updating `contributes.configuration.properties` field in package.json')
 
-	await execa('npm', ['pkg', 'delete', 'contributes.configuration.properties'])
+await execa('npm', ['pkg', 'delete', 'contributes.configuration.properties'])
 
-	for (const [name, item] of configs) {
-		await execa('npm', ['pkg', 'set', '--json', `contributes.configuration.properties[${name}]=${JSON.stringify(item)}`])
-	}
-
-	await execa('git', ['add', './package.json'])
+for (const [name, item] of configs) {
+	await execa('npm', ['pkg', 'set', '--json', `contributes.configuration.properties[${name}]=${JSON.stringify(item)}`])
 }
 
-main()
+await execa('git', ['add', './package.json'])
